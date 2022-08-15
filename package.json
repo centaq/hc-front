@@ -1,0 +1,39 @@
+{
+    "name": "domek",
+    "devDependencies": {
+        "@types/bootstrap": "^5.0.17",
+        "@types/chart.js": "^2.9.34",
+        "@types/jquery": "^3.5.6",
+        "@types/jquery-knob": "^1.2.33",
+        "clean-webpack-plugin": "^4.0.0-alpha.0",
+        "copy-webpack-plugin": "^9.0.1",
+        "css-loader": "^6.7.1",
+        "guid-typescript": "^1.0.9",
+        "html-webpack-plugin": "^5.3.2",
+        "http-server": "^0.12.3",
+        "mini-css-extract-plugin": "^2.1.0",
+        "style-loader": "^3.1.0",
+        "ts-loader": "^9.2.3",
+        "typescript": "^4.3.5",
+        "webpack": "^5.45.1",
+        "webpack-cli": "^4.7.2",
+        "webpack-merge": "^5.8.0"
+    },
+    "scripts": {
+        "build": "webpack --config ./webpack.config.prod.js",
+        "webpack": "webpack --config ./webpack.config.dev.js",
+        "start": "scripts/build.bat",
+        "postbuild:http-server": "npm run http-server",
+        "http-server": "http-server ./build/webpack/ -p 7071 --cors"
+    },
+    "dependencies": {
+        "bootstrap": "^5.0.2",
+        "chart.js": "^3.8.2",
+        "jquery": "^3.6.0",
+        "jquery-knob": "^1.2.11",
+        "jquery-sparkline": "^2.4.0",
+        "menu-js": "^0.0.1",
+        "node": "^16.5.0",
+        "ts-multiselect": "0.0.10"
+    }
+}

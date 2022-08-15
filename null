@@ -1,0 +1,15 @@
+Hash: dddd0e7b7ecffa903f20
+Version: webpack 4.29.0
+Time: 744ms
+Built at: 2019-01-25 14:46:48
+    Asset    Size  Chunks             Chunk Names
+bundle.js  85 KiB       0  [emitted]  main
+Entrypoint main = bundle.js
+[1] ./build/dist/App.js + 3 modules 1.89 KiB {0} [built]
+    | ./build/dist/App.js 810 bytes [built]
+    |     + 3 hidden modules
+    + 1 hidden module
+
+WARNING in configuration
+The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
+You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/concepts/mode/

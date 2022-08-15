@@ -1,0 +1,51 @@
+
+#ignore thumbnails created by windows
+Thumbs.db
+#Ignore files build by Visual Studio
+*.obj
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+sessions/
+node_modules/
+dist/
+.node-persist/
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+[Oo]pen[Cc]over*/
+[Cc]overage*/
+[Aa]rtifacts*/
+.vs/
+# Ignore the packages folder
+**/[Bb]uild[Ss]cripts/[Tt]ools/*
+!**/[Bb]uild[Ss]cripts/[Tt]ools/packages.config
+# Ignore ncrunch extensions
+*.ncrunchproject
+*.ncrunchsolution
+
+# NuGet Packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/packages/repositories.config
