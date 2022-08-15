@@ -1,7 +1,7 @@
 # hc-front
 Front-end for Home Control project.
 
-
+![Main screen](./img/main-screen.png)
 ![][image_ref_a32ff4ads]
 
 ## Description
