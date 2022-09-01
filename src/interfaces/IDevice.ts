@@ -179,6 +179,7 @@ export class ButtonsActionComponent implements IActionComponent {
     public render(): string {
         const sensor = this.sensors[0];
         let content = `
+            <div id="` + this.uid + `">
                 <div class="btn-group btn-group-sm" role="group" data="` + sensor + `">
                     <input type="radio" class="btn-check" name="options_` + sensor + `" id="` + this.uid + "_" + sensor + `_on" autocomplete="off" value="1">
                     <label class="btn btn-primary" for="` + this.uid + "_" + sensor + `_on">On</label>
@@ -194,6 +195,7 @@ export class ButtonsActionComponent implements IActionComponent {
                     <label class="btn btn-primary" for="` + this.uid + "_" + sensor1 + `_auto">Auto</label>
                 </div>`;
         }
+        content += `</div>`;
         return content;
     }
 
@@ -238,6 +240,62 @@ export class ButtonsActionComponent implements IActionComponent {
         let target = $(e.target);
         var isChecked = target.is(':checked');
         this.stateChange(<string>target.parent().attr("data"), isChecked ? 1 : 0);
+    }
+
+    public unbind() {
+
+    }
+}
+export class PreviewRowComponent implements IActionComponent {
+    private uid: string;
+    private formatter: (text: string) => string;
+    private sensors: string[];
+
+    constructor(sensors: string[], formatter: (text: string) => string) {
+        this.uid = Guid.create().toString();
+        this.sensors = sensors;
+        this.formatter = formatter;
+    }
+
+    public render(): string {
+        let content = ``;
+        content += `<div class="row">`;
+        if (this.sensors.length > 1) {
+            content += `
+                <div class="col-2" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
+                    <h6 class="right">
+                        <span data='` + this.sensors[0] + `'>12.3</span>
+                    </h6>
+                </div>
+                <div class="col-2" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[1] + `">
+                    <h6 class="right">
+                        <span data='` + this.sensors[1] + `'>12.3</span>
+                    </h6>
+                </div>`;
+        } else {
+            content += `
+                <div class="col-4" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
+                    <h6 class="right">
+                        <span data='` + this.sensors[0] + `'>12.3</span>
+                    </h6>
+                </div>`;
+        }
+        content += `
+            <div class="col-2" section="0" section-value="0">
+                <h6 class="left">
+                    <span>` + this.formatter('') + `</span>
+                </h6>
+            </div>
+        </div>`;
+        return content;
+    }
+
+    public update(data: any) {
+        const sensor = this.sensors[0];
+        $("[id='" + this.uid + "_" + sensor + "'] span").html(data[sensor].data);
+    }
+
+    public bind() {
     }
 
     public unbind() {
@@ -417,8 +475,14 @@ export interface RoomsTemperatureSensor {
 
 export interface ActionMultiSensor {
     title: string;
+    type: ActionMultiSensorType
     sensor: string;
     sensor1?: string;
+}
+
+export enum ActionMultiSensorType {
+    Buttons,
+    Preview
 }
 
 export interface ActionMultiDeviceContentRow {

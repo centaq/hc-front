@@ -11,6 +11,7 @@ import { SelectableDeviceBase } from '../devices/SelectableDeviceBase';
 import { AlarmDevice } from '../devices/AlarmDevice';
 import { RoomsTemperatureDevice } from '../devices/RoomsTemperatureDevice';
 import { ActionMultiDevice } from '../devices/ActionMultiDevice';
+import { ActionMultiSensorType } from '../../interfaces/IDevice';
 
 export class Dashboard extends PanelBase implements IMainPanel {
 
@@ -18,9 +19,15 @@ export class Dashboard extends PanelBase implements IMainPanel {
         super();
         this.devices = [ [
                 new AlarmDevice("alarm"),
-                new ActionMultiDevice("Podlewanie", "0.1.0", [
-                    { title: "Trawa", sensor: "0.1.1", sensor1: "0.1.101" },
-                    { title: "Świerki", sensor: "0.1.2", sensor1: "0.1.102" }
+                new ActionMultiDevice("Woda", [
+                    { title: "Ciśnienie", sensor: "1.100.1" , type: ActionMultiSensorType.Preview }, 
+                    { title: "Zawór wody", sensor: "1.100.2", type: ActionMultiSensorType.Buttons },
+                    { title: "Zasilanie pompy", sensor: "1.100.3", type: ActionMultiSensorType.Buttons }
+                ], 150),
+                new ActionMultiDevice("Podlewanie", [
+                    { title: "Podlewanie włączone", sensor: "0.1.0" , type: ActionMultiSensorType.Buttons }, 
+                    { title: "Trawa", sensor: "0.1.1", sensor1: "0.1.101", type: ActionMultiSensorType.Buttons },
+                    { title: "Świerki", sensor: "0.1.2", sensor1: "0.1.102", type: ActionMultiSensorType.Buttons }
                 ], 150),
                 new RoomsTemperatureDevice("Temperatura parter", [
                     { title: "Wiatrołap", sensor: "1.1.1" },

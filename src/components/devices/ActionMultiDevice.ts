@@ -1,31 +1,28 @@
 
-import { IDevice, IDeviceOptions, IDeviceContent, IDeviceContentOptions, DefaultDeviceHeader, IDeviceHeaderOptions, ActionMultiSensor, IActionComponent, ButtonsActionComponent, ActionMultiDeviceContentRow } from "../../interfaces/IDevice";
+import { IDevice, IDeviceOptions, IDeviceContent, IDeviceContentOptions, DefaultDeviceHeader, IDeviceHeaderOptions, ActionMultiSensor, IActionComponent, ButtonsActionComponent, ActionMultiDeviceContentRow, ActionMultiSensorType, PreviewRowComponent } from "../../interfaces/IDevice";
 import { DeviceBase } from "./DeviceBase";
 import { Guid } from 'guid-typescript';
 import  "jquery-sparkline";
 
 export class ActionMultiDevice extends DeviceBase implements IDevice {
-    private mainSensor: string;
     private sensors: ActionMultiSensor[];
 
-    constructor(title: string, mainSensor: string, sensors: ActionMultiSensor[], height: number) {
+    constructor(title: string, sensors: ActionMultiSensor[], height: number) {
         super({
             content: new ActionMultiDeviceContent({
                 formatter: (text: string) => { return text }
-            } as IDeviceContentOptions, mainSensor, sensors, (sensor: string, state: number) => { this.stateChange(sensor, state); }),
+            } as IDeviceContentOptions, sensors, (sensor: string, state: number) => { this.stateChange(sensor, state); }),
             header: new DefaultDeviceHeader({
                 title: title,
                 collapsable: false,
                 buttons: []
             } as IDeviceHeaderOptions),
         } as IDeviceOptions, height);
-        this.mainSensor = mainSensor;
         this.sensors = sensors;
     }
     
     public getDefinition(): any {
         let definition = {};
-        definition[this.mainSensor] = { stats: false };
         this.sensors.forEach(element => {
             definition[element.sensor] = { stats: false };
             if (element.sensor1 !== undefined) {
@@ -49,17 +46,27 @@ class ActionMultiDeviceContent implements IDeviceContent {
     private sensors: ActionMultiSensor[];
     private rows: ActionMultiDeviceContentRow[];
 
-    constructor(options: IDeviceContentOptions, mainSensor:string, sensors: ActionMultiSensor[], stateChange: (sensor: string, state: number) => void) {
+    constructor(options: IDeviceContentOptions, sensors: ActionMultiSensor[], stateChange: (sensor: string, state: number) => void) {
         this.uid = Guid.create().toString();
         this.rows = [];
-        this.sensors = [ { title: "Podlewanie włączone", sensor: mainSensor } ].concat(sensors);
+        this.sensors = sensors;
 
         this.sensors.forEach((el) => {
             let arr = [ el.sensor ];
             if (el.sensor1 !== undefined) {
                 arr.push(el.sensor1);
             }
-            this.rows.push({ title: el.title, component: new ButtonsActionComponent(arr, stateChange) });
+            let component = undefined;
+            if (el.type === ActionMultiSensorType.Buttons) {
+                component = new ButtonsActionComponent(arr, stateChange);
+            } else if (el.type === ActionMultiSensorType.Preview) {
+                component = new PreviewRowComponent(arr,  (text: string) => { return text + "bar "});
+            } else {
+                
+            }
+            if (component !== undefined) {
+                this.rows.push({ title: el.title, component: component });
+            }
         });
     }
 

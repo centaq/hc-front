@@ -111,7 +111,7 @@ class TestDeviceContent implements IDeviceContent {
         this.sensors.forEach(element => {
             $("#" + this.uid + " [data='" + element.sensor + "']").text(data[element.sensor].data.toFixed(1));
             
-            if (element.sensor1 !== undefined) {
+            if (element.sensor1 !== undefined && data[element.sensor1] !== undefined) {
                 var val = "(" + data[element.sensor1].data.toFixed(1) + ")";
                 $("#" + this.uid + " [data='" + element.sensor1 + "']").text(val);
             }
