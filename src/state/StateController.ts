@@ -99,7 +99,7 @@ export class StateController {
         if (arg.success) {
             this.state.sessionId = arg.sessionId;
             extCmds.push(ExtCmd.createUICmd(UICmdEnum.LoadLayout));
-            extCmds = extCmds.concat(this.switchPanel(PanelEnum.StatsPanel));
+            extCmds = extCmds.concat(this.switchPanel(PanelEnum.Dashboard));
         } else {
             extCmds.push(ExtCmd.createUICmd(UICmdEnum.ShowMessage, UICmdHelper.CreateMsg("Logowanie się nie powiodło", MsgLevel.Info)));
         }
