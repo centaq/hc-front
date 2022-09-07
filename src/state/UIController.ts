@@ -47,6 +47,9 @@ export class UIController {
             case UICmdEnum.UpdateDeviceData:
                 this.mainPanel?.update(arg);
                 break;
+            case UICmdEnum.UpdateDatetimeInfo:
+                $("div.left-sidebar div.bottom-nav-area span").text(new Date(arg).toLocaleString());
+                break;
             case UICmdEnum.UpdateStatsData:
                 this.mainPanel?.update(arg);
                 break;

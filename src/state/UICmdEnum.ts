@@ -9,5 +9,6 @@ export enum UICmdEnum {
     UpdateDeviceData,
     UpdateStatsData,
     ShowPopup,
-    ShowMessage
+    ShowMessage,
+    UpdateDatetimeInfo
 }

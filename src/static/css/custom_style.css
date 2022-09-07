@@ -352,3 +352,11 @@ icon, .sparkline7-outline-icon, .sparkline8-outline-icon, .sparkline9-outline-ic
  .loader-box div:nth-child(2) { animation-delay:300ms; }
  .loader-box div:nth-child(3) { animation-delay:400ms; }
  .loader-box div:nth-child(4) { animation-delay:500ms; }
+
+ .bottom-nav-area {
+    bottom: 0px;
+    position: fixed;
+    z-index: 30000;
+    font-size: small;
+    margin: 5px;
+ }
