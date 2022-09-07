@@ -60,6 +60,7 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Szafa elektryczna", sensor: "1.14.13", sensor1: "1.14.18" },
                     { title: "Teletechnika", sensor: "1.14.14", sensor1: "1.14.19" }
                 ], 150, " kWh"),
+                new TemperatureSensor('Temperatura zewnętrzna', "0.15.5"),
                 new TemperatureSensor('Temperatura biuro', "2.15.1"),
                 new TestTemperatureSensor("Temperatura w pokoju"),
                 //new BoilerTemperatureSensor('Temperatura pieca', "1.15.1"),
