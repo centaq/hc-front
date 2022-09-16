@@ -67,9 +67,10 @@ export class UIController {
         ;
         $(this.rootId).prepend(sm.render());
         $(this.rootId + " .content-inner-all").append(mm.render());
-
-        sm.bind();
-        mm.bind();
+        $(function() {
+            sm.bind();
+            mm.bind();
+        });
     }
 
     private static mountPanel(arg: any) {

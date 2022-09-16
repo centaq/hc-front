@@ -360,3 +360,33 @@ icon, .sparkline7-outline-icon, .sparkline8-outline-icon, .sparkline9-outline-ic
     font-size: small;
     margin: 5px;
  }
+
+ /* mobile menu */
+
+@media (max-width: 767px) {
+    .left-sidebar {
+        display: none;
+    }
+    .content-inner-all {
+        margin-left: 0px;
+    }
+}
+@media (min-width: 767px) {
+    .left-sidebar {
+        display: block;
+    }
+}
+
+.header-top-area, .fixed-header-top {
+    background: #1f2e86;
+}
+
+.header-top-area {
+    height: 60px;
+}
+.header-top-area {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
+}
+.mean-nav {
+    z-index: 1;
+}

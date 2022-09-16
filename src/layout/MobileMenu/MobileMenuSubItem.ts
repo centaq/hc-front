@@ -21,11 +21,7 @@ export class MobileMenuSubItem extends ComponentBase implements IComponent {
     }
 
     public bind() {
-        console.log('bind subitem' + this.menuSubItem.name );
-        $("#" + this.uid).click(() => {
-            console.log('asdads');
-            //$(".mean-nav ul:first").slideUp();
-            //$('.meanmenu-reveal').removeClass('meanclose');
+        $($("#" + this.uid)[0]).parent().click(() => {
             $('.mean-clicked').click();
             $('.meanmenu-reveal').click(); 
 

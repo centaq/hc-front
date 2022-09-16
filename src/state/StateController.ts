@@ -121,7 +121,6 @@ export class StateController {
 
         this.state.deviceDefinition = arg;
 
-        console.log(arg);
         if (Object.keys(this.state.deviceDefinition || []).length > 0) {
             extCmds.push(ExtCmd.createDataCmd(DataCmdEnum.Register, this.state.deviceDefinition));
         }

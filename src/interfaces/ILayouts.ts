@@ -19,12 +19,12 @@ export class HorizontalLayout implements ILayout {
     public render(content: string): string {
         let tmp = `
         <div id="` + this.uid + `" class="row">
-            <div class="col-xs-3 col-md-3">
+            <div class="col-3 col-3">
                 <div class="author-per-img content-left-image">
                     <span class='fa big-icon ` + this.icon + ` device-icon align-middle'></span>
                 </div>
             </div>
-            <div class="col-xs-9 col-md-9 ` + this.contentClass + `">`;
+            <div class="col-9 col-9 ` + this.contentClass + `">`;
         tmp += content;
         tmp += 
             `</div>

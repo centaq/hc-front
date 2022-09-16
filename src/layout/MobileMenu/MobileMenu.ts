@@ -67,6 +67,17 @@ export class MobileMenu extends ComponentBase implements IComponent {
 
     public render() : string {
         let content = `
+        <div class="header-top-area">
+            <div class="fixed-header-top">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="mobile-menu-placeholder col-lg-1 col-md-6 col-sm-6 col-xs-5">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="mobile-menu-area">
             <div class="container">
                 <div class="row">
