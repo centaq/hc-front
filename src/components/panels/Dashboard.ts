@@ -12,6 +12,7 @@ import { AlarmDevice } from '../devices/AlarmDevice';
 import { RoomsTemperatureDevice } from '../devices/RoomsTemperatureDevice';
 import { ActionMultiDevice } from '../devices/ActionMultiDevice';
 import { ActionMultiSensorType } from '../../interfaces/IDevice';
+import { LightDelayDevice } from '../devices/LightDelayDevice';
 
 export class Dashboard extends PanelBase implements IMainPanel {
 
@@ -19,6 +20,7 @@ export class Dashboard extends PanelBase implements IMainPanel {
         super();
         this.devices = [ [
                 new AlarmDevice("alarm"),
+                new LightDelayDevice("Światło nad garażem", "0.2.0", [15, 30, 60, 120], "0.2.100"),
                 new ActionMultiDevice("Woda", [
                     { title: "Ciśnienie", sensor: "1.100.1" , type: ActionMultiSensorType.Preview }, 
                     { title: "Zawór wody", sensor: "1.100.2", type: ActionMultiSensorType.Buttons },

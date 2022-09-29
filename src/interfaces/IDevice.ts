@@ -140,24 +140,35 @@ export class ButtonsDeviceContent implements IDeviceContent {
     private options: IDeviceContentOptions;
     private layout: ILayout;
     private buttons: IActionComponent;
+    private offDelayButtons: IActionComponent;
 
-    constructor(sensors: string[], options: IDeviceContentOptions, stateChange: (sensor: string, state: number) => void) {
+    constructor(sensors: string[], options: IDeviceContentOptions, stateChange: (sensor: string, state: number) => void, offDelays?: number[], offLabel?: string) {
         this.options = options;
         this.layout = new HorizontalLayout(this.options.icon, "centered");
         this.buttons = new ButtonsActionComponent(sensors, stateChange);
+        if (offDelays !== undefined && offLabel !== undefined)
+            this.offDelayButtons = new OffDelayButtonsActionComponent([sensors[0], offLabel], offDelays, stateChange);
     }
 
     public render(): string {
         let content = this.buttons.render();
+        if (this.offDelayButtons !== undefined) {
+            content += `<div style='height: 5px;'></div>`;
+            content += this.offDelayButtons.render();
+        }
         return this.layout.render(content);
     }
 
     public update(data: any) {
         this.buttons.update(data);
+        if (this.offDelayButtons !== undefined)
+            this.offDelayButtons.update(data);
     }
 
     public bind() {
-        this.buttons.bind()
+        this.buttons.bind();
+        if (this.offDelayButtons !== undefined)
+            this.offDelayButtons.bind();
     }
 
     public unbind() {
@@ -246,6 +257,63 @@ export class ButtonsActionComponent implements IActionComponent {
 
     }
 }
+
+export class OffDelayButtonsActionComponent implements IActionComponent {
+    private uid: string;
+    private sensors: string[];
+    private offDelays: number[]
+    private stateChange: (sensor: string, state: number) => void;
+
+    constructor(sensors: string[], offDelays: number[], stateChange: (sensor: string, state: number) => void) {
+        this.uid = Guid.create().toString();
+        this.sensors = sensors;
+        this.offDelays = offDelays;
+        this.stateChange = stateChange;
+    }
+
+    public render(): string {
+        const sensor = this.sensors[0];
+        let content = `
+            <div><div id="` + this.uid + `" style="display:flex;">
+                <div class="btn-group btn-group-sm" role="group" data="` + sensor + `">`;
+        this.offDelays.forEach((val) => {
+            content += `
+                    <input type="radio" class="btn-check" name="options_` + sensor + `" id="` + this.uid + "_" + sensor + "_" + val + `" autocomplete="off" value="`+ val + `">
+                    <label class="btn btn-primary" for="` + this.uid + "_" + sensor + "_" + val + `">` + val + `</label>
+                `;
+        });
+        content += `
+                </div>
+                <div class="off-label-container">
+                    <span id="` + this.uid + "_" + this.sensors[1] + `" class="content-text">-</span>
+                </div>
+                `;
+        content += `</div></div>`;
+        return content;
+    }
+
+    public update(data: any) {
+        const sensor = this.sensors[1];
+        $("[id='" + this.uid + "_" + sensor + "']").text(data[sensor].data);
+    }
+
+    public bind() {
+        const sensor = this.sensors[0];
+        $("[type='radio'][id^='" + this.uid + "_" + sensor + "']").click((e) => {
+            this.handleOnOffEvent(e);
+        });
+    }
+
+    private handleOnOffEvent(e: JQuery.TriggeredEvent) {
+        let target = $(e.target);
+        this.stateChange(<string>target.parent().attr("data"), <number>$("[name='" + target.attr("name") + "']:checked").val());
+    }
+
+    public unbind() {
+
+    }
+}
+
 export class PreviewRowComponent implements IActionComponent {
     private uid: string;
     private formatter: (text: string) => string;

@@ -390,3 +390,9 @@ icon, .sparkline7-outline-icon, .sparkline8-outline-icon, .sparkline9-outline-ic
 .mean-nav {
     z-index: 1;
 }
+
+.off-label-container {
+    text-align: right;
+    margin-top: 4px;
+    width: 100%;
+}

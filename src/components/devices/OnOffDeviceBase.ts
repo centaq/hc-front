@@ -5,8 +5,9 @@ import  "jquery-sparkline";
 
 export class OnOffDeviceBase extends DeviceBase implements IDevice {
     private sensors: string[];
+    private offLabel?: string;
 
-    constructor(title: string, icon: string, sensor: string, sensor1?: string) {
+    constructor(title: string, icon: string, sensor: string, sensor1?: string, offDelays?: number[], offLabel?: string) {
         
         let sensors = [ sensor ];
         if (sensor1 !== undefined) {
@@ -19,7 +20,7 @@ export class OnOffDeviceBase extends DeviceBase implements IDevice {
                 icon: icon,
                 formatter: () => { return '' },
                 stats: true
-            } as IDeviceContentOptions, (sensor: string, state: number) => { this.changeValue(sensor, state); }),
+            } as IDeviceContentOptions, (sensor: string, state: number) => { this.changeValue(sensor, state); }, offDelays, offLabel),
             header: new DefaultDeviceHeader({
                 title: title,
                 collapsable: false,
@@ -27,6 +28,7 @@ export class OnOffDeviceBase extends DeviceBase implements IDevice {
             } as IDeviceHeaderOptions)
         } as IDeviceOptions);
 
+        this.offLabel = offLabel;
         this.sensors = sensors;
     }
     
@@ -35,6 +37,9 @@ export class OnOffDeviceBase extends DeviceBase implements IDevice {
         this.sensors.forEach(el => {
             definition[el] = { stats: false }; 
         });
+        if (this.offLabel !== undefined) {
+            definition[this.offLabel] = { stats: false };
+        }
         return definition;
     }
 
