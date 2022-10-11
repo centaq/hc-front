@@ -1,7 +1,7 @@
 
-import { DeviceBase } from '../DeviceBase';
-import { IDeviceOptions, IDeviceContent, DefaultDeviceHeader } from '../../../interfaces/IDevice';
-import { HorizontalLayout, ILayout } from '../../../interfaces/ILayouts';
+import { DeviceBase } from '../devices/DeviceBase';
+import { IDeviceOptions, IDeviceContent, DefaultDeviceHeader } from '../../interfaces/IDevice';
+import { HorizontalLayout, ILayout } from '../../interfaces/ILayouts';
 import { Guid } from 'guid-typescript';
 
 export class SensorsArrayBase extends DeviceBase {

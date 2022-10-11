@@ -1,4 +1,4 @@
-import { SensorsArrayBase } from './sensors/SensorsArrayBase';
+import { SensorsArrayBase } from '../sensors/SensorsArrayBase';
 
 export class UnderfloorPumpFloorDevice extends SensorsArrayBase {
     

@@ -1,6 +1,6 @@
 
-import { IDevice, IDeviceOptions, DefaultDeviceContent, IDeviceContentOptions, DefaultDeviceHeader } from "../../../interfaces/IDevice";
-import { DeviceBase } from "../DeviceBase";
+import { IDevice, IDeviceOptions, DefaultDeviceContent, IDeviceContentOptions, DefaultDeviceHeader } from "../../interfaces/IDevice";
+import { DeviceBase } from "../devices/DeviceBase";
 
 export class SensorBase extends DeviceBase implements IDevice {
     private sensors: string[];

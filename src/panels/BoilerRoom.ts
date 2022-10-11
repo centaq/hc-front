@@ -1,12 +1,12 @@
 import { IMainPanel } from '../interfaces/IMainPanel';
 import { PanelBase } from './PanelBase';
-import { BoilerTemperatureSensor } from '../components/devices/sensors/BoilerTemperatureSensor';
-import { SmokeLevelSensor } from '../components/devices/sensors/SmokeLevelSensor';
-import { WaterUsageSensor } from '../components/devices/sensors/WaterUsageSensor';
+import { BoilerTemperatureSensor } from '../components/sensors/BoilerTemperatureSensor';
+import { SmokeLevelSensor } from '../components/sensors/SmokeLevelSensor';
+import { WaterUsageSensor } from '../components/sensors/WaterUsageSensor';
 import { UnderfloorPumpGroundDevice } from '../components/devices/UnderfloorPumpGroundDevice';
 import { UnderfloorPumpFloorDevice } from '../components/devices/UnderfloorPumpFloorDevice';
 import { WaterPressureSensorsDevice } from '../components/devices/WaterPressureSensorsDevice';
-import { FuelLevelSensor } from '../components/devices/sensors/FuelLevelSensor';
+import { FuelLevelSensor } from '../components/sensors/FuelLevelSensor';
 import { BoilerDevice } from '../components/devices/BoilerDevice';
 
 export class BoilerRoom extends PanelBase implements IMainPanel {

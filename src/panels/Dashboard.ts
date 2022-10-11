@@ -1,12 +1,12 @@
-import { TemperatureSensor } from '../components/devices/sensors/TemperatureSensor';
+import { TemperatureSensor } from '../components/sensors/TemperatureSensor';
 import { IMainPanel } from '../interfaces/IMainPanel';
 import { PanelBase } from './PanelBase';
 import { LightDevice } from '../components/devices/LightDevice';
 import { LightFluentDevice } from '../components/devices/LightFluentDevice';
 import { GarageDoorDevice } from '../components/devices/GarageDoorDevice';
-import { LightLevelSensor } from '../components/devices/sensors/LightLevelSensor';
-import { SmokeLevelSensor } from '../components/devices/sensors/SmokeLevelSensor';
-import { TestTemperatureSensor } from '../components/devices/sensors/TestTemperatureSensor';
+import { LightLevelSensor } from '../components/sensors/LightLevelSensor';
+import { SmokeLevelSensor } from '../components/sensors/SmokeLevelSensor';
+import { TestTemperatureSensor } from '../components/sensors/TestTemperatureSensor';
 import { SelectableDeviceBase } from '../components/devices/SelectableDeviceBase';
 import { AlarmDevice } from '../components/devices/AlarmDevice';
 import { RoomsTemperatureDevice } from '../components/devices/RoomsTemperatureDevice';

@@ -1,4 +1,4 @@
-import { TemperatureSensor } from '../components/devices/sensors/TemperatureSensor';
+import { TemperatureSensor } from '../components/sensors/TemperatureSensor';
 import { IMainPanel } from '../interfaces/IMainPanel';
 import { PanelBase } from './PanelBase';
 

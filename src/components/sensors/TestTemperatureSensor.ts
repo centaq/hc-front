@@ -1,9 +1,9 @@
 
-import { IDevice, IDeviceOptions, IDeviceContent, IDeviceContentOptions, DefaultDeviceHeader, IDeviceHeaderOptions } from "../../../interfaces/IDevice";
-import { DeviceBase } from "../DeviceBase";
+import { IDevice, IDeviceOptions, IDeviceContent, IDeviceContentOptions, DefaultDeviceHeader, IDeviceHeaderOptions } from "../../interfaces/IDevice";
+import { DeviceBase } from "../devices/DeviceBase";
 import { Guid } from 'guid-typescript';
 import  "jquery-sparkline";
-import { HorizontalLayout, ILayout } from '../../../interfaces/ILayouts';
+import { HorizontalLayout, ILayout } from '../../interfaces/ILayouts';
 
 export class TestTemperatureSensor extends DeviceBase implements IDevice {
     private sensor: string = "2.16.2";
