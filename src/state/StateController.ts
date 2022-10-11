@@ -1,4 +1,4 @@
-import { PanelEnum } from "../components/PanelEnum";
+import { PanelEnum } from "../panels/PanelEnum";
 import { DataCmdEnum } from "./DataCmdEnum";
 import { ExtCmd } from "./ExtCmd";
 import { State } from "./State";

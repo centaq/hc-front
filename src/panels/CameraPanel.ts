@@ -1,6 +1,6 @@
-import { IMainPanel } from '../../interfaces/IMainPanel';
+import { IMainPanel } from '../interfaces/IMainPanel';
 import { PanelBase } from './PanelBase';
-import { CameraDevice } from '../devices/CameraDevice';
+import { CameraDevice } from '../components/devices/CameraDevice';
 import { IDevicesDefinitions } from 'src/interfaces/IDevice';
 import { Guid } from 'guid-typescript';
 

@@ -1,5 +1,5 @@
-import { TemperatureSensor } from '../devices/sensors/TemperatureSensor';
-import { IMainPanel } from '../../interfaces/IMainPanel';
+import { TemperatureSensor } from '../components/devices/sensors/TemperatureSensor';
+import { IMainPanel } from '../interfaces/IMainPanel';
 import { PanelBase } from './PanelBase';
 
 export class OfficePanel extends PanelBase implements IMainPanel {

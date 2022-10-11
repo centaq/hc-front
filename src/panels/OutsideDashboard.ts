@@ -1,8 +1,8 @@
-import { TemperatureSensor } from '../devices/sensors/TemperatureSensor';
-import { IMainPanel } from '../../interfaces/IMainPanel';
+import { TemperatureSensor } from '../components/devices/sensors/TemperatureSensor';
+import { IMainPanel } from '../interfaces/IMainPanel';
 import { PanelBase } from './PanelBase';
-import { LightLevelSensor } from '../devices/sensors/LightLevelSensor';
-import { PressureSensor } from '../devices/sensors/PressureSensor';
+import { LightLevelSensor } from '../components/devices/sensors/LightLevelSensor';
+import { PressureSensor } from '../components/devices/sensors/PressureSensor';
 
 export class OutsideDashboard extends PanelBase implements IMainPanel {
 

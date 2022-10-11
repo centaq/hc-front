@@ -1,5 +1,5 @@
-import { IMainPanel } from '../../interfaces/IMainPanel';
-import { IDevice, IDevicesDefinitions } from '../../interfaces/IDevice';
+import { IMainPanel } from '../interfaces/IMainPanel';
+import { IDevice, IDevicesDefinitions } from '../interfaces/IDevice';
 
 export class PanelBase implements IMainPanel {
     protected devices: IDevice[][];

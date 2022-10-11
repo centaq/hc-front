@@ -1,18 +1,18 @@
-import { TemperatureSensor } from '../devices/sensors/TemperatureSensor';
-import { IMainPanel } from '../../interfaces/IMainPanel';
+import { TemperatureSensor } from '../components/devices/sensors/TemperatureSensor';
+import { IMainPanel } from '../interfaces/IMainPanel';
 import { PanelBase } from './PanelBase';
-import { LightDevice } from '../devices/LightDevice';
-import { LightFluentDevice } from '../devices/LightFluentDevice';
-import { GarageDoorDevice } from '../devices/GarageDoorDevice';
-import { LightLevelSensor } from '../devices/sensors/LightLevelSensor';
-import { SmokeLevelSensor } from '../devices/sensors/SmokeLevelSensor';
-import { TestTemperatureSensor } from '../devices/sensors/TestTemperatureSensor';
-import { SelectableDeviceBase } from '../devices/SelectableDeviceBase';
-import { AlarmDevice } from '../devices/AlarmDevice';
-import { RoomsTemperatureDevice } from '../devices/RoomsTemperatureDevice';
-import { ActionMultiDevice } from '../devices/ActionMultiDevice';
-import { ActionMultiSensorType } from '../../interfaces/IDevice';
-import { LightDelayDevice } from '../devices/LightDelayDevice';
+import { LightDevice } from '../components/devices/LightDevice';
+import { LightFluentDevice } from '../components/devices/LightFluentDevice';
+import { GarageDoorDevice } from '../components/devices/GarageDoorDevice';
+import { LightLevelSensor } from '../components/devices/sensors/LightLevelSensor';
+import { SmokeLevelSensor } from '../components/devices/sensors/SmokeLevelSensor';
+import { TestTemperatureSensor } from '../components/devices/sensors/TestTemperatureSensor';
+import { SelectableDeviceBase } from '../components/devices/SelectableDeviceBase';
+import { AlarmDevice } from '../components/devices/AlarmDevice';
+import { RoomsTemperatureDevice } from '../components/devices/RoomsTemperatureDevice';
+import { ActionMultiDevice } from '../components/devices/ActionMultiDevice';
+import { ActionMultiSensorType } from '../interfaces/IDevice';
+import { LightDelayDevice } from '../components/devices/LightDelayDevice';
 
 export class Dashboard extends PanelBase implements IMainPanel {
 

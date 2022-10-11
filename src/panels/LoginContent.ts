@@ -1,8 +1,8 @@
 
-import { IMainPanel } from "../../interfaces/IMainPanel";
-import { IDevicesDefinitions } from '../../interfaces/IDevice';
-import { StateQueue } from "../../state/StateQueue";
-import { StateCmdEnum } from "../../state/StateCmdEnum";
+import { IMainPanel } from "../interfaces/IMainPanel";
+import { IDevicesDefinitions } from '../interfaces/IDevice';
+import { StateQueue } from "../state/StateQueue";
+import { StateCmdEnum } from "../state/StateCmdEnum";
 
 export class LoginContent implements IMainPanel {
 

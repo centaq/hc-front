@@ -1,5 +1,5 @@
-import { PanelEnum } from "../components/PanelEnum";
-import * as panels from '../components/panels/index'
+import { PanelEnum } from "../panels/PanelEnum";
+import * as panels from '../panels/index'
 
 export class UIControllerHelper {
     public static mountPanel(rootId: string, arg: any): any {

@@ -1,13 +1,13 @@
-import { IMainPanel } from '../../interfaces/IMainPanel';
+import { IMainPanel } from '../interfaces/IMainPanel';
 import { PanelBase } from './PanelBase';
-import { BoilerTemperatureSensor } from '../devices/sensors/BoilerTemperatureSensor';
-import { SmokeLevelSensor } from '../devices/sensors/SmokeLevelSensor';
-import { WaterUsageSensor } from '../devices/sensors/WaterUsageSensor';
-import { UnderfloorPumpGroundDevice } from '../devices/UnderfloorPumpGroundDevice';
-import { UnderfloorPumpFloorDevice } from '../devices/UnderfloorPumpFloorDevice';
-import { WaterPressureSensorsDevice } from '../devices/WaterPressureSensorsDevice';
-import { FuelLevelSensor } from '../devices/sensors/FuelLevelSensor';
-import { BoilerDevice } from '../devices/BoilerDevice';
+import { BoilerTemperatureSensor } from '../components/devices/sensors/BoilerTemperatureSensor';
+import { SmokeLevelSensor } from '../components/devices/sensors/SmokeLevelSensor';
+import { WaterUsageSensor } from '../components/devices/sensors/WaterUsageSensor';
+import { UnderfloorPumpGroundDevice } from '../components/devices/UnderfloorPumpGroundDevice';
+import { UnderfloorPumpFloorDevice } from '../components/devices/UnderfloorPumpFloorDevice';
+import { WaterPressureSensorsDevice } from '../components/devices/WaterPressureSensorsDevice';
+import { FuelLevelSensor } from '../components/devices/sensors/FuelLevelSensor';
+import { BoilerDevice } from '../components/devices/BoilerDevice';
 
 export class BoilerRoom extends PanelBase implements IMainPanel {
 

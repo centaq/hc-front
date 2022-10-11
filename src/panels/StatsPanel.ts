@@ -1,12 +1,12 @@
-import { IMainPanel } from '../../interfaces/IMainPanel';
-import { IDevicesDefinitions } from '../../interfaces/IDevice';
+import { IMainPanel } from '../interfaces/IMainPanel';
+import { IDevicesDefinitions } from '../interfaces/IDevice';
 import { Guid } from 'guid-typescript';
 import Chart from 'chart.js/auto';
 import { Multiselect } from 'ts-multiselect';
 
 import "ts-multiselect/dist/style.css";
-import { StateQueue } from '../../state/StateQueue';
-import { StateCmdEnum } from '../../state/StateCmdEnum';
+import { StateQueue } from '../state/StateQueue';
+import { StateCmdEnum } from '../state/StateCmdEnum';
 import { IStatsRefresh } from 'src/data/Retriever';
 
 export class StatsPanel implements IMainPanel {
