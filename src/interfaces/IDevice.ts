@@ -142,7 +142,7 @@ export class ButtonsDeviceContent implements IDeviceContent {
     private buttons: IActionComponent;
     private offDelayButtons: IActionComponent;
 
-    constructor(sensors: string[], options: IDeviceContentOptions, stateChange: (sensor: string, state: number) => void, offDelays?: number[], offLabel?: string) {
+    constructor(sensors: string[], options: IDeviceContentOptions, stateChange: (sensor: string, state: number, value?: number) => void, offDelays?: number[], offLabel?: string) {
         this.options = options;
         this.layout = new HorizontalLayout(this.options.icon, "centered");
         this.buttons = new ButtonsActionComponent(sensors, stateChange);
@@ -262,9 +262,9 @@ export class OffDelayButtonsActionComponent implements IActionComponent {
     private uid: string;
     private sensors: string[];
     private offDelays: number[]
-    private stateChange: (sensor: string, state: number) => void;
+    private stateChange: (sensor: string, state: number, value?: number) => void;
 
-    constructor(sensors: string[], offDelays: number[], stateChange: (sensor: string, state: number) => void) {
+    constructor(sensors: string[], offDelays: number[], stateChange: (sensor: string, state: number, value?: number) => void) {
         this.uid = Guid.create().toString();
         this.sensors = sensors;
         this.offDelays = offDelays;
@@ -277,9 +277,10 @@ export class OffDelayButtonsActionComponent implements IActionComponent {
             <div><div id="` + this.uid + `" style="display:flex;">
                 <div class="btn-group btn-group-sm" role="group" data="` + sensor + `">`;
         this.offDelays.forEach((val) => {
+            var radioId = this.uid + "_" + sensor + "_delay_" + val;
             content += `
-                    <input type="radio" class="btn-check" name="options_` + sensor + `" id="` + this.uid + "_" + sensor + "_" + val + `" autocomplete="off" value="`+ val + `">
-                    <label class="btn btn-primary" for="` + this.uid + "_" + sensor + "_" + val + `">` + val + `</label>
+                    <input type="radio" class="btn-check" name="options_` + sensor + `" id="` + radioId + `" autocomplete="off" value="`+ val + `">
+                    <label class="btn btn-primary" for="` + radioId + `">` + val + `</label>
                 `;
         });
         content += `
@@ -299,14 +300,25 @@ export class OffDelayButtonsActionComponent implements IActionComponent {
 
     public bind() {
         const sensor = this.sensors[0];
-        $("[type='radio'][id^='" + this.uid + "_" + sensor + "']").click((e) => {
+        $("[type='radio'][id='" + this.uid + "_" + sensor + "_on']").click((e) => {
             this.handleOnOffEvent(e);
+        });
+        $("[type='radio'][id='" + this.uid + "_" + sensor + "_off']").click((e) => {
+            this.handleOnOffEvent(e);
+        });
+        $("[type='radio'][id^='" + this.uid + "_" + sensor + "_delay_']").click((e) => {
+            this.handleOnDelayOffEvent(e);
         });
     }
 
     private handleOnOffEvent(e: JQuery.TriggeredEvent) {
         let target = $(e.target);
         this.stateChange(<string>target.parent().attr("data"), <number>$("[name='" + target.attr("name") + "']:checked").val());
+    }
+
+    private handleOnDelayOffEvent(e: JQuery.TriggeredEvent) {
+        let target = $(e.target);
+        this.stateChange(<string>target.parent().attr("data"), 1, <number>$("[name='" + target.attr("name") + "']:checked").val());
     }
 
     public unbind() {

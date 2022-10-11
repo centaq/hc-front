@@ -20,7 +20,7 @@ export class OnOffDeviceBase extends DeviceBase implements IDevice {
                 icon: icon,
                 formatter: () => { return '' },
                 stats: true
-            } as IDeviceContentOptions, (sensor: string, state: number) => { this.changeValue(sensor, state); }, offDelays, offLabel),
+            } as IDeviceContentOptions, (sensor: string, state: number, value?: number) => { this.changeValue(sensor, state, value); }, offDelays, offLabel),
             header: new DefaultDeviceHeader({
                 title: title,
                 collapsable: false,
