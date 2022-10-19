@@ -51,33 +51,23 @@ class AlarmDeviceContent implements IDeviceContent {
         let content = `
         
         <div id="` + this.uid + `" class="" style="width: 100%; height: 100%;">
-            <div class="col-xs-12 col-md-12" style="top:30px;">
-                <div class="row">
-                    <div class="col-xs-12 col-md-12" section="0" section-value="0">
-                        <h3 class="centered">
-                            <span class='fa fa-big fa-lock-open device-icon align-middle'></span>
-                            <span class="content-text"></span>
-                        </h3>
-                    </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12" section="0" section-value="0">
+                    <h3 class="centered">
+                        <span class='fa fa-big fa-lock-open device-icon align-middle'></span>
+                        <span class="content-text"></span>
+                    </h3>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-12" style="top:120px">
-                <div class="" style="width: 100%;">
-                    <div class="col-xs-4 col-md-4 " section="1" section-value="0">
-                        <h3 class="centered">
-                            <span class='fa fa-lock-open device-icon align-middle'></span>
-                        </h3>
-                    </div>
-                    <div class="col-xs-4 col-md-4 " section="2" section-value="0">
-                        <h3 class="centered">
-                            <span class='fa fa-fw fa-lock-open device-icon align-middle'></span>
-                        </h3>
-                    </div>
-                    <div class="col-xs-4 col-md-4 " section="3" section-value="0">
-                        <h3 class="centered">
-                            <span class='fa fa-lock-open device-icon align-middle'></span>
-                        </h3>
-                    </div>
+            <div class="row" style="font-size: 20px;">
+                <div class="col-xs-4 col-md-4 centered" section="1" section-value="0">
+                    <span class='fas fa-lock-open  align-middle'></span>
+                </div>
+                <div class="col-xs-4 col-md-4 centered" section="2" section-value="0">
+                    <span class='fas fa-fw fa-lock-open align-middle'></span>
+                </div>
+                <div class="col-xs-4 col-md-4 centered" section="3" section-value="0">
+                    <span class='fas fa-lock-open align-middle'></span>
                 </div>
             </div>
         </div>`;
