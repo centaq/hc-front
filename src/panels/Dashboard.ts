@@ -22,9 +22,9 @@ export class Dashboard extends PanelBase implements IMainPanel {
                 new AlarmDevice("alarm"),
                 new LightDelayDevice("Światło nad garażem", "0.2.0", [15, 30, 60, 120], "0.2.100"),
                 new ActionMultiDevice("Woda", [
-                    { title: "Ciśnienie", sensor: "1.100.1" , type: ActionMultiSensorType.Preview }, 
-                    { title: "Zawór wody", sensor: "1.100.2", type: ActionMultiSensorType.Buttons },
-                    { title: "Zasilanie pompy", sensor: "1.100.3", type: ActionMultiSensorType.Buttons }
+                    { title: "Ciśnienie", sensor: "0.0.1" , type: ActionMultiSensorType.Preview }, 
+                    { title: "Zawór wody", sensor: "0.0.2", type: ActionMultiSensorType.Buttons },
+                    { title: "Zasilanie pompy", sensor: "0.0.3", type: ActionMultiSensorType.Buttons }
                 ], 150),
                 new ActionMultiDevice("Podlewanie", [
                     { title: "Podlewanie włączone", sensor: "0.1.0" , type: ActionMultiSensorType.Buttons }, 
@@ -62,6 +62,13 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Szafa elektryczna", sensor: "1.14.13", sensor1: "1.14.18" },
                     { title: "Teletechnika", sensor: "1.14.14", sensor1: "1.14.19" }
                 ], 150, " kWh"),
+                new RoomsTemperatureDevice("Ostatni ruch", [
+                    { title: "Parter", sensor: "10.11.0" },
+                    { title: "Garaż", sensor: "10.11.1" },
+                    { title: "Piętro", sensor: "10.11.2" },
+                    { title: "Gospodarczy", sensor: "10.11.3" },
+                    { title: "Zewnętrzne", sensor: "10.11.4" }
+                ], 150, " s"),
                 new TemperatureSensor('Temperatura zewnętrzna', "0.15.1"),
                 new TemperatureSensor('Temperatura biuro', "2.15.1"),
                 new TestTemperatureSensor("Temperatura w pokoju"),
