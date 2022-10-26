@@ -1,5 +1,5 @@
 
-import { IDevice, IDeviceOptions, IDeviceContent, IDeviceContentOptions, DefaultDeviceHeader, IDeviceHeaderOptions, ActionMultiSensor, IActionComponent, ButtonsActionComponent, ActionMultiDeviceContentRow, ActionMultiSensorType, PreviewRowComponent } from "../../interfaces/IDevice";
+import { IDevice, IDeviceOptions, IDeviceContent, IDeviceContentOptions, DefaultDeviceHeader, IDeviceHeaderOptions, ActionMultiSensor, IActionComponent, ButtonsActionComponent, ActionMultiDeviceContentRow, ActionMultiSensorType, PreviewRowComponent, HeaterRowComponent, HeaterControlRowComponent } from "../../interfaces/IDevice";
 import { DeviceBase } from "./DeviceBase";
 import { Guid } from 'guid-typescript';
 import  "jquery-sparkline";
@@ -27,6 +27,9 @@ export class ActionMultiDevice extends DeviceBase implements IDevice {
             definition[element.sensor] = { stats: false };
             if (element.sensor1 !== undefined) {
                 definition[element.sensor1] = { stats: false };
+            }
+            if (element.sensor2 !== undefined) {
+                definition[element.sensor2] = { stats: false };
             }
         });
         return definition;
@@ -56,11 +59,18 @@ class ActionMultiDeviceContent implements IDeviceContent {
             if (el.sensor1 !== undefined) {
                 arr.push(el.sensor1);
             }
+            if (el.sensor2 !== undefined) {
+                arr.push(el.sensor2);
+            }
             let component = undefined;
             if (el.type === ActionMultiSensorType.Buttons) {
                 component = new ButtonsActionComponent(arr, stateChange);
             } else if (el.type === ActionMultiSensorType.Preview) {
-                component = new PreviewRowComponent(arr,  (text: string) => { return text + "bar "});
+                component = new PreviewRowComponent(arr,  (text: string) => { return text + el.unit});
+            } else if (el.type === ActionMultiSensorType.Heater) {
+                component = new HeaterRowComponent(arr,  (text: string) => { return text + "°C "});
+            } else if (el.type === ActionMultiSensorType.HeaterControl) {
+                component = new HeaterControlRowComponent(arr[0]);
             } else {
                 
             }
@@ -84,9 +94,9 @@ class ActionMultiDeviceContent implements IDeviceContent {
 
     private generateRow(title: string, component: IActionComponent): string {
         let content : string = `
-        <div class="row" style="padding-top:10px;">
+        <div class="row" style="">
             <div class="col-6" section="0" section-value="0">
-                <h6 class="" style="padding-top: 4px;">
+                <h6 class="" style="">
                     ` + title + `
                 </h6>
             </div>`;

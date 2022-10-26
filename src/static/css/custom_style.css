@@ -396,3 +396,15 @@ icon, .sparkline7-outline-icon, .sparkline8-outline-icon, .sparkline9-outline-ic
     margin-top: 4px;
     width: 100%;
 }
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: #000;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .active-dot {
+    box-shadow: 0 0 0 3px #ea6643;
+  }

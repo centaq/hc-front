@@ -22,7 +22,7 @@ export class Dashboard extends PanelBase implements IMainPanel {
                 new AlarmDevice("alarm"),
                 new LightDelayDevice("Światło nad garażem", "0.2.0", [15, 30, 60, 120], "0.2.100"),
                 new ActionMultiDevice("Woda", [
-                    { title: "Ciśnienie", sensor: "0.0.1" , type: ActionMultiSensorType.Preview }, 
+                    { title: "Ciśnienie", sensor: "0.0.1" , type: ActionMultiSensorType.Preview, unit: "bar" }, 
                     { title: "Zawór wody", sensor: "0.0.2", type: ActionMultiSensorType.Buttons },
                     { title: "Zasilanie pompy", sensor: "0.0.3", type: ActionMultiSensorType.Buttons }
                 ], 150),
@@ -31,6 +31,32 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Trawa", sensor: "0.1.1", sensor1: "0.1.101", type: ActionMultiSensorType.Buttons },
                     { title: "Świerki", sensor: "0.1.2", sensor1: "0.1.102", type: ActionMultiSensorType.Buttons }
                 ], 150),
+                new ActionMultiDevice("Ogrzewanie parter", [
+                    { title: "Pompa", sensor: "10.21.0", type: ActionMultiSensorType.HeaterControl },
+                    { title: "Wiatrołap", sensor: "1.1.1", sensor1: "10.20.6", sensor2: "c.10.20.6", type: ActionMultiSensorType.Heater },
+                    { title: "Gabinet", sensor: "1.7.1", sensor1: "10.20.4", sensor2: "c.10.20.4", type: ActionMultiSensorType.Heater },
+                    { title: "Kuchnia", sensor: "1.6.1", sensor1: "10.20.3", sensor2: "c.10.20.3", type: ActionMultiSensorType.Heater },
+                    { title: "Schody", sensor: "1.2.1", sensor1: "10.20.5", sensor2: "c.10.20.5", type: ActionMultiSensorType.Heater },
+                    { title: "Salon (taras)", sensor: "1.4.1", sensor1: "10.20.1", sensor2: "c.10.20.1", type: ActionMultiSensorType.Heater },
+                    { title: "Kominek", sensor: "1.4.2", type: ActionMultiSensorType.Preview, unit: "°C" },
+                    { title: "Garaż", sensor: "1.8.1", sensor1: "10.20.8", sensor2: "c.10.20.8", type: ActionMultiSensorType.Heater },
+                    { title: "Spiżarnia", sensor: "1.9.1", type: ActionMultiSensorType.Preview, unit: "°C" },
+                    { title: "Kotłownia", sensor: "1.10.1", type: ActionMultiSensorType.Preview, unit: "°C" },
+                ], 280),
+                new ActionMultiDevice("Ogrzewanie piętro", [
+                    { title: "Pompa", sensor: "10.21.1", type: ActionMultiSensorType.HeaterControl },
+                    { title: "Korytarz", sensor: "2.1.1", sensor1: "10.20.15", sensor2: "c.10.20.15", type: ActionMultiSensorType.Heater },
+                    { title: "Sypialnia", sensor: "2.2.1", sensor1: "10.20.16", sensor2: "c.10.20.16", type: ActionMultiSensorType.Heater },
+                    { title: "Garderoba", sensor: "2.3.1", sensor1: "10.20.17", sensor2: "c.10.20.17", type: ActionMultiSensorType.Heater },
+                    { title: "P1", sensor: "2.4.1", sensor1: "10.20.18", sensor2: "c.10.20.18", type: ActionMultiSensorType.Heater },
+                    { title: "P2", sensor: "2.5.1", sensor1: "10.20.19", sensor2: "c.10.20.19", type: ActionMultiSensorType.Heater },
+                    { title: "Łazienka", sensor: "2.6.1", sensor1: "10.20.20", sensor2: "c.10.20.20", type: ActionMultiSensorType.Heater },
+                    { title: "Bawialnia", sensor: "2.7.1", sensor1: "10.20.21", sensor2: "c.10.20.21", type: ActionMultiSensorType.Heater },
+                    { title: "Pralnia", sensor: "2.8.1", sensor1: "10.20.22", sensor2: "c.10.20.22", type: ActionMultiSensorType.Heater },
+                    { title: "P3", sensor: "2.9.1", sensor1: "10.20.23", sensor2: "c.10.20.23", type: ActionMultiSensorType.Heater },
+                    { title: "P4", sensor: "2.10.1", sensor1: "10.20.24", sensor2: "c.10.20.24", type: ActionMultiSensorType.Heater },
+                    { title: "Strych", sensor: "3.1.1", type: ActionMultiSensorType.Preview, unit: "°C" },
+                ], 320),
                 new RoomsTemperatureDevice("Temperatura parter", [
                     { title: "Wiatrołap", sensor: "1.1.1" },
                     { title: "Gabinet", sensor: "1.7.1" },

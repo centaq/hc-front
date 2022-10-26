@@ -342,26 +342,26 @@ export class PreviewRowComponent implements IActionComponent {
         content += `<div class="row">`;
         if (this.sensors.length > 1) {
             content += `
-                <div class="col-2" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
+                <div class="col-4" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
                     <h6 class="right">
                         <span data='` + this.sensors[0] + `'>12.3</span>
                     </h6>
                 </div>
-                <div class="col-2" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[1] + `">
+                <div class="col-4" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[1] + `">
                     <h6 class="right">
                         <span data='` + this.sensors[1] + `'>12.3</span>
                     </h6>
                 </div>`;
         } else {
             content += `
-                <div class="col-4" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
+                <div class="col-8" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
                     <h6 class="right">
                         <span data='` + this.sensors[0] + `'>12.3</span>
                     </h6>
                 </div>`;
         }
         content += `
-            <div class="col-2" section="0" section-value="0">
+            <div class="col-4" section="0" section-value="0">
                 <h6 class="left">
                     <span>` + this.formatter('') + `</span>
                 </h6>
@@ -373,6 +373,119 @@ export class PreviewRowComponent implements IActionComponent {
     public update(data: any) {
         const sensor = this.sensors[0];
         $("[id='" + this.uid + "_" + sensor + "'] span").html(data[sensor].data);
+    }
+
+    public bind() {
+    }
+
+    public unbind() {
+
+    }
+}
+
+export class HeaterRowComponent implements IActionComponent {
+    private uid: string;
+    private formatter: (text: string) => string;
+    private sensors: string[];
+
+    constructor(sensors: string[], formatter: (text: string) => string) {
+        this.uid = Guid.create().toString();
+        this.sensors = sensors;
+        this.formatter = formatter;
+    }
+
+    public render(): string {
+        let content = ``;
+        content += `<div class="row">`;
+        if (this.sensors.length > 1) {
+            content += `
+                <div class="col-4" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
+                    <h6 class="right">
+                        <span data='` + this.sensors[0] + `'>-</span>
+                    </h6>
+                </div>
+                <div class="col-4" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[2] + `">
+                    <h6 class="right">
+                        <span data='` + this.sensors[2] + `'>-</span>
+                    </h6>
+                </div>`;
+        } else {
+            content += `
+                <div class="col-8" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
+                    <h6 class="right">
+                        <span data='` + this.sensors[0] + `'>-</span>
+                    </h6>
+                </div>`;
+        }
+        content += `
+            <div class="col-2" section="0" section-value="0">
+                <h6 class="left">
+                    <span>` + this.formatter('') + `</span>
+                </h6>
+            </div>
+            <div class="col-2" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[1] + `">
+                <h6 class="right">
+                    <span class="dot"></span>
+                </h6>
+            </div>
+        </div>`;
+        return content;
+    }
+
+    public update(data: any) {
+        const sensor = this.sensors[0];
+        $("[id='" + this.uid + "_" + sensor + "'] span").html(data[sensor].data);
+        $("[id='" + this.uid + "_" + this.sensors[2] + "'] span").html(data[this.sensors[2]].data);
+        var el = $("[id='" + this.uid + "_" + this.sensors[1] + "'] span");
+        if (data[this.sensors[1]].data) {
+            el.addClass("active-dot");
+        } else {
+            el.removeClass("active-dot");
+        }
+    }
+
+    public bind() {
+    }
+
+    public unbind() {
+
+    }
+}
+
+export class HeaterControlRowComponent implements IActionComponent {
+    private uid: string;
+    private sensor: string;
+
+    constructor(sensor: string) {
+        this.uid = Guid.create().toString();
+        this.sensor = sensor;
+    }
+
+    public render(): string {
+        let content = ``;
+        content += `<div class="row">`;
+        content += `
+            <div class="col-10" section="0" section-value="0">
+                <h6 class="left">
+                    <span></span>
+                </h6>
+            </div>
+            <div class="col-2" section="0" section-value="0" id="` + this.uid + "_" + this.sensor + `">
+                <h6 class="right">
+                    <span class="dot"></span>
+                </h6>
+            </div>
+        </div>`;
+        return content;
+    }
+
+    public update(data: any) {
+        var el = $("[id='" + this.uid + "_" + this.sensor + "'] span");
+        if (data[this.sensor].data) {
+            el.addClass("active-dot");
+        } else {
+            el.removeClass("active-dot");
+        }
     }
 
     public bind() {
@@ -558,11 +671,15 @@ export interface ActionMultiSensor {
     type: ActionMultiSensorType
     sensor: string;
     sensor1?: string;
+    sensor2?: string;
+    unit?: string;
 }
 
 export enum ActionMultiSensorType {
     Buttons,
-    Preview
+    Preview,
+    Heater,
+    HeaterControl
 }
 
 export interface ActionMultiDeviceContentRow {
