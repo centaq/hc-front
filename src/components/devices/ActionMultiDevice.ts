@@ -1,5 +1,5 @@
 
-import { IDevice, IDeviceOptions, IDeviceContent, IDeviceContentOptions, DefaultDeviceHeader, IDeviceHeaderOptions, ActionMultiSensor, IActionComponent, ButtonsActionComponent, ActionMultiDeviceContentRow, ActionMultiSensorType, PreviewRowComponent, HeaterRowComponent, HeaterControlRowComponent } from "../../interfaces/IDevice";
+import { IDevice, IDeviceOptions, IDeviceContent, IDeviceContentOptions, DefaultDeviceHeader, IDeviceHeaderOptions, ActionMultiSensor, IActionComponent, ButtonsActionComponent, ActionMultiDeviceContentRow, ActionMultiSensorType, PreviewRowComponent, HeaterRowComponent, PreviewOnOffRowComponent } from "../../interfaces/IDevice";
 import { DeviceBase } from "./DeviceBase";
 import { Guid } from 'guid-typescript';
 import  "jquery-sparkline";
@@ -69,8 +69,8 @@ class ActionMultiDeviceContent implements IDeviceContent {
                 component = new PreviewRowComponent(arr,  (text: string) => { return text + el.unit});
             } else if (el.type === ActionMultiSensorType.Heater) {
                 component = new HeaterRowComponent(arr,  (text: string) => { return text + "°C "});
-            } else if (el.type === ActionMultiSensorType.HeaterControl) {
-                component = new HeaterControlRowComponent(arr[0]);
+            } else if (el.type === ActionMultiSensorType.PreviewOnOffControl) {
+                component = new PreviewOnOffRowComponent(arr[0]);
             } else {
                 
             }

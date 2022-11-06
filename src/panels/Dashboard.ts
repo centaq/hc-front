@@ -31,8 +31,12 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Trawa", sensor: "0.1.1", sensor1: "0.1.101", type: ActionMultiSensorType.Buttons },
                     { title: "Świerki", sensor: "0.1.2", sensor1: "0.1.102", type: ActionMultiSensorType.Buttons }
                 ], 150),
+                new ActionMultiDevice("Bezpieczniki", [
+                    { title: "Pompy", sensor: "10.30.0", type: ActionMultiSensorType.PreviewOnOffControl },
+                    { title: "Elektrozawory", sensor: "10.30.1", type: ActionMultiSensorType.PreviewOnOffControl }
+                ], 150),
                 new ActionMultiDevice("Ogrzewanie parter", [
-                    { title: "Pompa", sensor: "10.21.0", type: ActionMultiSensorType.HeaterControl },
+                    { title: "Pompa", sensor: "10.21.0", type: ActionMultiSensorType.PreviewOnOffControl },
                     { title: "Wiatrołap", sensor: "1.1.1", sensor1: "10.20.6", sensor2: "c.10.20.0", type: ActionMultiSensorType.Heater },
                     { title: "Łazienka", sensor: "1.3.1", sensor1: "10.20.7", sensor2: "c.10.20.2", type: ActionMultiSensorType.Heater },
                     { title: "Gabinet", sensor: "1.7.1", sensor1: "10.20.4", sensor2: "c.10.20.5", type: ActionMultiSensorType.Heater },
@@ -44,9 +48,9 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Garaż", sensor: "1.8.1", sensor1: "10.20.8", sensor2: "c.10.20.7", type: ActionMultiSensorType.Heater },
                     { title: "Spiżarnia", sensor: "1.9.1", type: ActionMultiSensorType.Preview, unit: "°C" },
                     { title: "Kotłownia", sensor: "1.10.1", type: ActionMultiSensorType.Preview, unit: "°C" },
-                ], 320),
+                ], 340),
                 new ActionMultiDevice("Ogrzewanie piętro", [
-                    { title: "Pompa", sensor: "10.21.1", type: ActionMultiSensorType.HeaterControl },
+                    { title: "Pompa", sensor: "10.21.1", type: ActionMultiSensorType.PreviewOnOffControl },
                     { title: "Korytarz", sensor: "2.1.1", sensor1: "10.20.15", sensor2: "c.10.20.8", type: ActionMultiSensorType.Heater },
                     { title: "Sypialnia", sensor: "2.2.1", sensor1: "10.20.16", sensor2: "c.10.20.9", type: ActionMultiSensorType.Heater },
                     { title: "Garderoba", sensor: "2.3.1", sensor1: "10.20.17", sensor2: "c.10.20.10", type: ActionMultiSensorType.Heater },
@@ -58,7 +62,7 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "P3", sensor: "2.9.1", sensor1: "10.20.23", sensor2: "c.10.20.16", type: ActionMultiSensorType.Heater },
                     { title: "P4", sensor: "2.10.1", sensor1: "10.20.24", sensor2: "c.10.20.17", type: ActionMultiSensorType.Heater },
                     { title: "Strych", sensor: "3.1.1", type: ActionMultiSensorType.Preview, unit: "°C" },
-                ], 320),
+                ], 340),
                 new RoomsTemperatureDevice("Temperatura parter", [
                     { title: "Wiatrołap", sensor: "1.1.1" },
                     { title: "Gabinet", sensor: "1.7.1" },

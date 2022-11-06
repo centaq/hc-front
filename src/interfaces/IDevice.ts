@@ -452,7 +452,7 @@ export class HeaterRowComponent implements IActionComponent {
     }
 }
 
-export class HeaterControlRowComponent implements IActionComponent {
+export class PreviewOnOffRowComponent implements IActionComponent {
     private uid: string;
     private sensor: string;
 
@@ -679,7 +679,7 @@ export enum ActionMultiSensorType {
     Buttons,
     Preview,
     Heater,
-    HeaterControl
+    PreviewOnOffControl
 }
 
 export interface ActionMultiDeviceContentRow {
