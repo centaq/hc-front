@@ -65,11 +65,13 @@ export class StateController {
 
     private static tick100ms(): Array<ExtCmd> {
         var extCmds: Array<ExtCmd> = new Array<ExtCmd>();
-        if(this.state.waitingForData == 1) {
-            extCmds.push(ExtCmd.createDataCmd(DataCmdEnum.GetDeviceData, this.state.dataToken));
-        }
-        if (this.state.waitingForData > 0) {
-            this.state.waitingForData--;
+        if (this.state.isDataTokenSet) {
+            if(this.state.waitingForData == 1) {
+                extCmds.push(ExtCmd.createDataCmd(DataCmdEnum.GetDeviceData, this.state.dataToken));
+            }
+            if (this.state.waitingForData > 0) {
+                this.state.waitingForData--;
+            }
         }
         return extCmds;
     }
@@ -111,6 +113,9 @@ export class StateController {
         var extCmds: Array<ExtCmd> = new Array<ExtCmd>();
         this.state.loading = true;
         this.state.deviceDefinition = null;
+        this.state.waitingForData = 0;
+        this.state.dataToken = '';
+        this.state.isDataTokenSet = false;
         extCmds.push(ExtCmd.createUICmd(UICmdEnum.ShowLoader));
         extCmds.push(ExtCmd.createUICmd(UICmdEnum.SwitchPanel, panel));
         return extCmds;
@@ -132,6 +137,7 @@ export class StateController {
         var extCmds: Array<ExtCmd> = new Array<ExtCmd>();
 
         this.state.dataToken = arg;
+        this.state.isDataTokenSet = true;
         
         extCmds.push(ExtCmd.createDataCmd(DataCmdEnum.GetDeviceData, this.state.dataToken));
 
@@ -146,12 +152,14 @@ export class StateController {
             extCmds.push(ExtCmd.createUICmd(UICmdEnum.HideLoader));
         }
 
-        if (arg.params == this.state.dataToken) {
-            extCmds.push(ExtCmd.createUICmd(UICmdEnum.UpdateDeviceData, arg.value));
-            extCmds.push(ExtCmd.createUICmd(UICmdEnum.UpdateDatetimeInfo, arg.date));
-            this.state.waitingForData = 50;
-        } else {
-            extCmds.push(ExtCmd.createUICmd(UICmdEnum.LogMessage, "niepoprawny token. State: " + this.state.dataToken + "; z servera: " + arg.params));
+        if (this.state.isDataTokenSet) {
+            if (arg.params == this.state.dataToken) {
+                extCmds.push(ExtCmd.createUICmd(UICmdEnum.UpdateDeviceData, arg.value));
+                extCmds.push(ExtCmd.createUICmd(UICmdEnum.UpdateDatetimeInfo, arg.date));
+                this.state.waitingForData = 50;
+            } else {
+                extCmds.push(ExtCmd.createUICmd(UICmdEnum.LogMessage, "niepoprawny token. State: " + this.state.dataToken + "; z servera: " + arg.params));
+            }
         }
 
         return extCmds;
@@ -175,6 +183,7 @@ export class StateController {
 
     private static statsRefresh(arg: any) : Array<ExtCmd> {
         var extCmds: Array<ExtCmd> = new Array<ExtCmd>();
+        console.log("stats refresh");
         this.state.dataToken = arg.guid.value;
         extCmds.push(ExtCmd.createDataCmd(DataCmdEnum.StatsRefresh, arg));
 

@@ -9,6 +9,7 @@ export class State {
 
     public waitingForData: number;
     public dataToken: string;
+    public isDataTokenSet: boolean;
 
     public sessionId: string;
 }
