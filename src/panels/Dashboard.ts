@@ -22,9 +22,9 @@ export class Dashboard extends PanelBase implements IMainPanel {
                 new AlarmDevice("alarm"),
                 new LightDelayDevice("Światło nad garażem", "0.2.0", [15, 30, 60, 120], "0.2.100"),
                 new ActionMultiDevice("Woda", [
-                    { title: "Ciśnienie", sensor: "0.0.1" , type: ActionMultiSensorType.Preview, unit: "bar" }, 
-                    { title: "Zawór wody", sensor: "0.0.2", type: ActionMultiSensorType.Buttons },
-                    { title: "Zasilanie pompy", sensor: "0.0.3", type: ActionMultiSensorType.Buttons }
+                    { title: "Ciśnienie", sensor: "10.0.1" , type: ActionMultiSensorType.Preview, unit: "bar" }, 
+                    { title: "Zawór wody", sensor: "10.0.2", type: ActionMultiSensorType.Buttons },
+                    { title: "Zasilanie pompy", sensor: "10.0.3", type: ActionMultiSensorType.Buttons }
                 ], 150),
                 new ActionMultiDevice("Świąteczne", [
                     { title: "Nad garażem", sensor: "100.0.0", type: ActionMultiSensorType.Buttons },
