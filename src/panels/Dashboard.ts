@@ -26,6 +26,11 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Zawór wody", sensor: "0.0.2", type: ActionMultiSensorType.Buttons },
                     { title: "Zasilanie pompy", sensor: "0.0.3", type: ActionMultiSensorType.Buttons }
                 ], 150),
+                new ActionMultiDevice("Świąteczne", [
+                    { title: "Nad garażem", sensor: "100.0.0", type: ActionMultiSensorType.Buttons },
+                    { title: "Choinka zew.", sensor: "100.0.1", type: ActionMultiSensorType.Buttons },
+                    { title: "Choinka wew.", sensor: "100.0.2", type: ActionMultiSensorType.Buttons }
+                ], 150),
                 new ActionMultiDevice("Podlewanie", [
                     { title: "Podlewanie włączone", sensor: "0.1.0" , type: ActionMultiSensorType.Buttons }, 
                     { title: "Trawa", sensor: "0.1.1", sensor1: "0.1.101", type: ActionMultiSensorType.Buttons },
