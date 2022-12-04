@@ -408,3 +408,18 @@ icon, .sparkline7-outline-icon, .sparkline8-outline-icon, .sparkline9-outline-ic
   .active-dot {
     box-shadow: 0 0 0 3px #ea6643;
   }
+
+  div.heating-bar-container {
+    height:1px; 
+    background-color: #cde1fe; 
+    position: absolute;
+    padding: 0px;
+  }
+
+  
+  div.heating-bar {
+    height:1px; 
+    background-color: #0a58ca; 
+    position: absolute;
+    width: 1%; 
+  }

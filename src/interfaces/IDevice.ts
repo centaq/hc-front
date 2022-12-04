@@ -396,9 +396,11 @@ export class HeaterRowComponent implements IActionComponent {
 
     public render(): string {
         let content = ``;
-        content += `<div class="row">`;
         if (this.sensors.length > 1) {
-            content += `
+            content += `<div class="row" style="position: relative;">`;
+            content += `    <div class="heating-bar-container">`;
+            content += `        <div id="` + this.uid + "_" + this.sensors[3] + `" data='` + this.sensors[3] + `' class="heating-bar"></div>`;
+            content += `    </div>
                 <div class="col-4" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
                     <h6 class="right">
                         <span data='` + this.sensors[0] + `'>-</span>
@@ -410,6 +412,8 @@ export class HeaterRowComponent implements IActionComponent {
                     </h6>
                 </div>`;
         } else {
+            content += `<div class="row" style="position: relative;">`;
+            content += `<div style="height:1px; background-color: #cde1fe; position: absolute; padding: 0px;"></div>`;
             content += `
                 <div class="col-8" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
                     <h6 class="right">
@@ -435,7 +439,12 @@ export class HeaterRowComponent implements IActionComponent {
     public update(data: any) {
         const sensor = this.sensors[0];
         $("[id='" + this.uid + "_" + sensor + "'] span").html(data[sensor].data);
-        $("[id='" + this.uid + "_" + this.sensors[2] + "'] span").html(data[this.sensors[2]].data);
+        if (this.sensors.length > 2) {
+            $("[id='" + this.uid + "_" + this.sensors[2] + "'] span").html(data[this.sensors[2]].data);
+        }
+        if (this.sensors.length > 3) {
+            $("[id='" + this.uid + "_" + this.sensors[3] + "']").css("width", (90 * data[this.sensors[3]].data) + "%");
+        }
         var el = $("[id='" + this.uid + "_" + this.sensors[1] + "'] span");
         if (data[this.sensors[1]].data) {
             el.addClass("active-dot");
@@ -672,6 +681,7 @@ export interface ActionMultiSensor {
     sensor: string;
     sensor1?: string;
     sensor2?: string;
+    sensor3?: string;
     unit?: string;
 }
 

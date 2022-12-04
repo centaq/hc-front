@@ -31,6 +31,9 @@ export class ActionMultiDevice extends DeviceBase implements IDevice {
             if (element.sensor2 !== undefined) {
                 definition[element.sensor2] = { stats: false };
             }
+            if (element.sensor3 !== undefined) {
+                definition[element.sensor3] = { stats: false };
+            }
         });
         return definition;
     }
@@ -61,6 +64,9 @@ class ActionMultiDeviceContent implements IDeviceContent {
             }
             if (el.sensor2 !== undefined) {
                 arr.push(el.sensor2);
+            }
+            if (el.sensor3 !== undefined) {
+                arr.push(el.sensor3);
             }
             let component = undefined;
             if (el.type === ActionMultiSensorType.Buttons) {
