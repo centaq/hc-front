@@ -16,7 +16,7 @@ export class AlarmDevice extends DeviceBase {
                 collapsable: false,
                 buttons: []
             } as IDeviceHeaderOptions)
-        } as IDeviceOptions, 250);
+        } as IDeviceOptions, 150);
         //this.height = 'auto';
         //this.classOverride = 'col-xs-12 col-sm-6';
         this.center = true;
