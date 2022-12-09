@@ -34,7 +34,7 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Elektrozawory", sensor: "10.30.1", type: ActionMultiSensorType.PreviewOnOffControl }
                 ], 150),
                 new ActionMultiDevice("Ogrzewanie parter", [
-                    { title: "Pompa", sensor: "10.21.0", type: ActionMultiSensorType.PreviewOnOffControl },
+                    { title: "Pompa", sensor: "10.21.0", sensor1: "avg.cd.10.21.0", type: ActionMultiSensorType.PreviewOnOffControl },
                     { title: "Wiatrołap", sensor: "1.1.1", sensor1: "10.20.6", sensor2: "c.10.20.0", sensor3: "avg.cd.10.20.6", type: ActionMultiSensorType.Heater },
                     { title: "Łazienka", sensor: "1.3.1", sensor1: "10.20.7", sensor2: "c.10.20.2", sensor3: "avg.cd.10.20.7", type: ActionMultiSensorType.Heater },
                     { title: "Gabinet", sensor: "1.7.1", sensor1: "10.20.4", sensor2: "c.10.20.5", sensor3: "avg.cd.10.20.4", type: ActionMultiSensorType.Heater },
@@ -48,7 +48,7 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Kotłownia", sensor: "1.10.1", type: ActionMultiSensorType.Preview, unit: "°C" },
                 ], 340),
                 new ActionMultiDevice("Ogrzewanie piętro", [
-                    { title: "Pompa", sensor: "10.21.1", type: ActionMultiSensorType.PreviewOnOffControl },
+                    { title: "Pompa", sensor: "10.21.1", sensor1: "avg.cd.10.21.1", type: ActionMultiSensorType.PreviewOnOffControl },
                     { title: "Korytarz", sensor: "2.1.1", sensor1: "10.20.15", sensor2: "c.10.20.8", sensor3: "avg.cd.10.20.15", type: ActionMultiSensorType.Heater },
                     { title: "Sypialnia", sensor: "2.2.1", sensor1: "10.20.16", sensor2: "c.10.20.9", sensor3: "avg.cd.10.20.16", type: ActionMultiSensorType.Heater },
                     { title: "Garderoba", sensor: "2.3.1", sensor1: "10.20.17", sensor2: "c.10.20.10", sensor3: "avg.cd.10.20.17", type: ActionMultiSensorType.Heater },

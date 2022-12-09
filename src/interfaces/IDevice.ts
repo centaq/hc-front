@@ -463,23 +463,33 @@ export class HeaterRowComponent implements IActionComponent {
 
 export class PreviewOnOffRowComponent implements IActionComponent {
     private uid: string;
-    private sensor: string;
+    private sensors: string[];
 
-    constructor(sensor: string) {
+    constructor(sensors: string[]) {
         this.uid = Guid.create().toString();
-        this.sensor = sensor;
+        this.sensors = sensors;
     }
 
     public render(): string {
         let content = ``;
-        content += `<div class="row">`;
+        if (this.sensors.length > 1) {
+            content += `<div class="row" style="position: relative;">`;
+            content += `    <div class="heating-bar-container">`;
+            content += `        <div id="` + this.uid + "_" + this.sensors[1] + `" data='` + this.sensors[1] + `' class="heating-bar"></div>`;
+            content += `    </div>`;
+
+        } else {
+            content += `<div class="row">`;
+
+        }
+
         content += `
             <div class="col-10" section="0" section-value="0">
                 <h6 class="left">
                     <span></span>
                 </h6>
             </div>
-            <div class="col-2" section="0" section-value="0" id="` + this.uid + "_" + this.sensor + `">
+            <div class="col-2" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
                 <h6 class="right">
                     <span class="dot"></span>
                 </h6>
@@ -489,8 +499,11 @@ export class PreviewOnOffRowComponent implements IActionComponent {
     }
 
     public update(data: any) {
-        var el = $("[id='" + this.uid + "_" + this.sensor + "'] span");
-        if (data[this.sensor].data) {
+        var el = $("[id='" + this.uid + "_" + this.sensors[0] + "'] span");
+        if (this.sensors.length > 1) {
+            $("[id='" + this.uid + "_" + this.sensors[1] + "']").css("width", (90 * data[this.sensors[1]].data) + "%");
+        }
+        if (data[this.sensors[0]].data) {
             el.addClass("active-dot");
         } else {
             el.removeClass("active-dot");

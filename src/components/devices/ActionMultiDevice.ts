@@ -76,7 +76,7 @@ class ActionMultiDeviceContent implements IDeviceContent {
             } else if (el.type === ActionMultiSensorType.Heater) {
                 component = new HeaterRowComponent(arr,  (text: string) => { return text + "°C "});
             } else if (el.type === ActionMultiSensorType.PreviewOnOffControl) {
-                component = new PreviewOnOffRowComponent(arr[0]);
+                component = new PreviewOnOffRowComponent(arr);
             } else {
                 
             }
