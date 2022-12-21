@@ -85,7 +85,6 @@ export class StateController {
 
     private static isSessionValidResult(arg: any): Array<ExtCmd> {
         var extCmds: Array<ExtCmd> = new Array<ExtCmd>();
-        console.log(arg);
         if (!arg.result) {
             extCmds.push(ExtCmd.createUICmd(UICmdEnum.MountPanel, PanelEnum.Login));
         } else {
@@ -103,7 +102,6 @@ export class StateController {
 
     private static loginResult(arg: any): Array<ExtCmd> {
         var extCmds: Array<ExtCmd> = new Array<ExtCmd>();
-        console.log(arg);
         if (arg.result) {
             extCmds = extCmds.concat(this.setUserLogged(arg.session));
         } else {
