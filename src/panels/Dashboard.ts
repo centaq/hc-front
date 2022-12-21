@@ -6,6 +6,7 @@ import { RoomsTemperatureDevice } from '../components/devices/RoomsTemperatureDe
 import { ActionMultiDevice } from '../components/devices/ActionMultiDevice';
 import { ActionMultiSensorType } from '../interfaces/IDevice';
 import { LightDelayDevice } from '../components/devices/LightDelayDevice';
+import { SelectableDeviceBase } from '../components/devices/SelectableDeviceBase';
 
 export class Dashboard extends PanelBase implements IMainPanel {
 
@@ -32,6 +33,9 @@ export class Dashboard extends PanelBase implements IMainPanel {
                 new ActionMultiDevice("Bezpieczniki", [
                     { title: "Pompy", sensor: "10.30.0", type: ActionMultiSensorType.PreviewOnOffControl },
                     { title: "Elektrozawory", sensor: "10.30.1", type: ActionMultiSensorType.PreviewOnOffControl }
+                ], 150),
+                new ActionMultiDevice("Ogrzewanie", [
+                    { title: "Opał", sensor: "10.21.2", type: ActionMultiSensorType.Preview, unit: "" },
                 ], 150),
                 new ActionMultiDevice("Ogrzewanie parter", [
                     { title: "Pompa", sensor: "10.21.0", sensor1: "avg.cd.10.21.0", type: ActionMultiSensorType.PreviewOnOffControl },
@@ -62,12 +66,15 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Strych", sensor: "3.1.1", type: ActionMultiSensorType.Preview, unit: "°C" },
                 ], 340),
                 new RoomsTemperatureDevice("Liczniki energii", [
-                    { title: "Całkowita", sensor: "1.14.10", sensor1: "1.14.15" },
-                    { title: "Studnia", sensor: "1.14.11", sensor1: "1.14.16" },
-                    { title: "Kotłownia", sensor: "1.14.12", sensor1: "1.14.17" },
-                    { title: "Szafa elektryczna", sensor: "1.14.13", sensor1: "1.14.18" },
-                    { title: "Teletechnika", sensor: "1.14.14", sensor1: "1.14.19" }
-                ], 150, " kWh"),
+                    { title: "Całkowita", sensor: "1.14.10", sensor1: "1.14.20" },
+                    { title: "Studnia", sensor: "1.14.11", sensor1: "1.14.21" },
+                    { title: "Kotłownia", sensor: "1.14.12", sensor1: "1.14.22" },
+                    { title: "Szafa elektryczna", sensor: "1.14.13", sensor1: "1.14.23" },
+                    { title: "Teletechnika", sensor: "1.14.14", sensor1: "1.14.24" },
+                    { title: "Rekuperator", sensor: "1.14.15", sensor1: "1.14.25" },
+                    { title: "Kuchnia", sensor: "1.14.16", sensor1: "1.14.26" },
+                    { title: "Pralnia", sensor: "1.14.17", sensor1: "1.14.27" }
+                ], 250, " kWh"),
                 new RoomsTemperatureDevice("Ostatni ruch", [
                     { title: "Parter", sensor: "10.11.0" },
                     { title: "Garaż", sensor: "10.11.1" },
@@ -75,7 +82,8 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Gospodarczy", sensor: "10.11.3" },
                     { title: "Zewnętrzne", sensor: "10.11.4" }
                 ], 150, " s"),
-                new TemperatureSensor('Temperatura zewnętrzna', "0.15.1")
+                new TemperatureSensor('Temperatura zewnętrzna', "0.15.1"),
+                new SelectableDeviceBase("Selectable", "")
         ]];
     }
 
