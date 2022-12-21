@@ -8,6 +8,7 @@ import { StateCmdEnum } from "./StateCmdEnum";
 import { Popup } from "../components/Popup";
 import * as bootstrap from "bootstrap";
 import { UIControllerHelper } from "../helpers/UIControllerHelper";
+import { DebugInfo } from "../layout/DebugInfo";
 
 export class UIController {
     private static rootId: string;
@@ -48,7 +49,7 @@ export class UIController {
                 this.mainPanel?.update(arg);
                 break;
             case UICmdEnum.UpdateDatetimeInfo:
-                $("div.left-sidebar div.bottom-nav-area span").text(new Date(arg).toLocaleString());
+                $("div.debug-info div.timestamp-area span").text(new Date(arg).toLocaleString());
                 break;
             case UICmdEnum.UpdateStatsData:
                 this.mainPanel?.update(arg);
@@ -64,6 +65,7 @@ export class UIController {
     private static loadLayout() {
         let sm = new SidebarMenu();
         let mm = new MobileMenu();
+        let di = new DebugInfo();
         ;
         $(this.rootId).prepend(sm.render());
         $(this.rootId + " .content-inner-all").append(mm.render());
@@ -71,6 +73,7 @@ export class UIController {
             sm.bind();
             mm.bind();
         });
+        $(this.rootId).append(di.render());
     }
 
     private static mountPanel(arg: any) {

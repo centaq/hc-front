@@ -80,9 +80,6 @@ export class SidebarMenu extends ComponentBase implements IComponent {
                 </ul>
             </div>
         </nav>
-        <div class="bottom-nav-area">
-            <span>_</span>
-        </div>
     </div>`;
 
         return content;
