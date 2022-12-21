@@ -254,10 +254,14 @@ icon, .sparkline7-outline-icon, .sparkline8-outline-icon, .sparkline9-outline-ic
     box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
     padding: 20px;
 }
-.logo {
+div.logo {
     padding-top: 30px;
     text-align: center;
 }
+img.logo {
+    width: 250px;
+}
+
 .login-title {
     padding: 30px 15px;
 }

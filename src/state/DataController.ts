@@ -15,12 +15,12 @@ export class DataController {
         switch (cmd) {
             case DataCmdEnum.IsSessionValid:
                 this.dataRetriever.logged().done((res) => {
-                    StateQueue.enqueue(StateCmdEnum.IsSessionValidResult, res["logged"]);
+                    StateQueue.enqueue(StateCmdEnum.IsSessionValidResult, res);
                 });
                 break;
             case DataCmdEnum.Login:
                 this.dataRetriever.login(arg).done((res: any, b: any, c: any) => {
-                    StateQueue.enqueue(StateCmdEnum.LoginResult, {success: c.status == 200, sessionId: res.result});
+                    StateQueue.enqueue(StateCmdEnum.LoginResult, res);
                 });
                 break;
             case DataCmdEnum.Register:

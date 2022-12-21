@@ -85,7 +85,12 @@ export class StateController {
 
     private static isSessionValidResult(arg: any): Array<ExtCmd> {
         var extCmds: Array<ExtCmd> = new Array<ExtCmd>();
-        extCmds.push(ExtCmd.createUICmd(UICmdEnum.MountPanel, PanelEnum.Login));
+        console.log(arg);
+        if (!arg.result) {
+            extCmds.push(ExtCmd.createUICmd(UICmdEnum.MountPanel, PanelEnum.Login));
+        } else {
+            extCmds = extCmds.concat(this.setUserLogged(arg.session));
+        }
         extCmds.push(ExtCmd.createUICmd(UICmdEnum.ToogleLoaderVisibility, false));
         return extCmds;
     }
@@ -98,10 +103,9 @@ export class StateController {
 
     private static loginResult(arg: any): Array<ExtCmd> {
         var extCmds: Array<ExtCmd> = new Array<ExtCmd>();
-        if (arg.success) {
-            this.state.sessionId = arg.sessionId;
-            extCmds.push(ExtCmd.createUICmd(UICmdEnum.LoadLayout));
-            extCmds = extCmds.concat(this.switchPanel(PanelEnum.Dashboard));
+        console.log(arg);
+        if (arg.result) {
+            extCmds = extCmds.concat(this.setUserLogged(arg.session));
         } else {
             extCmds.push(ExtCmd.createUICmd(UICmdEnum.ShowMessage, UICmdHelper.CreateMsg("Logowanie się nie powiodło", MsgLevel.Info)));
         }
@@ -196,6 +200,22 @@ export class StateController {
             extCmds.push(ExtCmd.createUICmd(UICmdEnum.UpdateStatsData, arg.data));
         }
 
+        return extCmds;
+    }
+
+    private static setUserLogged(session: any) : Array<ExtCmd> {
+        var extCmds: Array<ExtCmd> = new Array<ExtCmd>();
+        console.log(session);
+        this.state.sessionId = session.id;
+        this.state.user = session.user;
+        let panel: string = PanelEnum.Dashboard;
+        if (session.user.toLowerCase() === "marcin") {
+            panel = PanelEnum.Dashboard;
+        } else if (session.user.toLowerCase() === "ania") {
+            panel = PanelEnum.OfficePanel;
+        }
+        extCmds.push(ExtCmd.createUICmd(UICmdEnum.LoadLayout));
+        extCmds = extCmds.concat(this.switchPanel(panel));
         return extCmds;
     }
 }

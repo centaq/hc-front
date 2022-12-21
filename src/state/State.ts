@@ -12,4 +12,5 @@ export class State {
     public isDataTokenSet: boolean;
 
     public sessionId: string;
+    public user: string;
 }

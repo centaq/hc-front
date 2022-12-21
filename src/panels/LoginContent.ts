@@ -19,10 +19,10 @@ export class LoginContent implements IMainPanel {
 
     public bind(){
         $("#login-button").click(() => {
-            console.log('do');
-            StateQueue.enqueue(StateCmdEnum.Login, {user: "a", pass: "b"});
+            var user = $("input[name=email]").val();
+            var pass = $("input[name=password]").val();
+            StateQueue.enqueue(StateCmdEnum.Login, {user: user, pass: pass});
         });
-        StateQueue.enqueue(StateCmdEnum.Login, {user: "a", pass: "b"});
     }
 
     public unbind() {
@@ -40,7 +40,7 @@ export class LoginContent implements IMainPanel {
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="logo">
-                                        <a href="#"><img src="static/img/logo/logo.png" alt="" />
+                                        <a href="#"><img class="logo" src="static/img/logo/logo.png" alt="" />
                                         </a>
                                     </div>
                                 </div>
