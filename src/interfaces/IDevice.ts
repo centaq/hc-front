@@ -340,7 +340,24 @@ export class PreviewRowComponent implements IActionComponent {
     public render(): string {
         let content = ``;
         content += `<div class="row">`;
-        if (this.sensors.length > 1) {
+        if (this.sensors.length > 2) {
+            content += `
+                <div class="col-4" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
+                    <h6 class="right">
+                        <span data='` + this.sensors[0] + `'>12.3</span>
+                    </h6>
+                </div>
+                <div class="col-2" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[1] + `">
+                    <h6 class="right">
+                        <span data='` + this.sensors[1] + `'>12.3</span>
+                    </h6>
+                </div>
+                <div class="col-2" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[2] + `">
+                    <h6 class="right">
+                        <span data='` + this.sensors[2] + `'>12.3</span>
+                    </h6>
+                </div>`;
+        } else if (this.sensors.length > 1) {
             content += `
                 <div class="col-4" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
                     <h6 class="right">
@@ -373,6 +390,12 @@ export class PreviewRowComponent implements IActionComponent {
     public update(data: any) {
         const sensor = this.sensors[0];
         $("[id='" + this.uid + "_" + sensor + "'] span").html(data[sensor].data);
+        if (this.sensors.length > 1) {
+            $("[id='" + this.uid + "_" + this.sensors[1] + "'] span").html(data[this.sensors[1]].data);
+        }
+        if (this.sensors.length > 2) {
+            $("[id='" + this.uid + "_" + this.sensors[2] + "'] span").html("(" + data[this.sensors[2]].data + ")");
+        }
     }
 
     public bind() {
