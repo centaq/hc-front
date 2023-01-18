@@ -25,7 +25,7 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Garaż", sensor: "1.8.1" },
                     { title: "Spiżarnia", sensor: "1.9.1" },
                     { title: "Kotłownia", sensor: "1.10.1" },
-                ], 260, "°C"),
+                ], 260, "°C", () => { return ""; }),
                 new RoomsTemperatureDevice("Temperatura piętro", [
                     { title: "Korytarz", sensor: "2.1.1" },
                     { title: "Sypialnia", sensor: "2.2.1" },
@@ -38,7 +38,7 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "P3", sensor: "2.9.1" },
                     { title: "P4", sensor: "2.10.1" },
                     { title: "Strych", sensor: "3.1.1" },
-                ], 300, "°C"),
+                ], 300, "°C",  () => { return ""; }),
                 new TemperatureSensor('Temperatura biuro', "2.15.1"),
                 new TestTemperatureSensor("Temperatura w pokoju"),
                 //new BoilerTemperatureSensor('Temperatura pieca', "1.15.1"),

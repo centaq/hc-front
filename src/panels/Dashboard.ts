@@ -7,6 +7,7 @@ import { ActionMultiDevice } from '../components/devices/ActionMultiDevice';
 import { ActionMultiSensorType } from '../interfaces/IDevice';
 import { LightDelayDevice } from '../components/devices/LightDelayDevice';
 import { SelectableDeviceBase } from '../components/devices/SelectableDeviceBase';
+import { FormatterHelper } from '../helpers/FormatterHelper';
 
 export class Dashboard extends PanelBase implements IMainPanel {
 
@@ -78,14 +79,14 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Rekuperator", sensor: "1.14.15", sensor1: "1.14.25" },
                     { title: "Kuchnia", sensor: "1.14.16", sensor1: "1.14.26" },
                     { title: "Pralnia", sensor: "1.14.17", sensor1: "1.14.27" }
-                ], 250, " kWh"),
+                ], 250, " kWh", (text: any) => { return text.toFixed(1); }),
                 new RoomsTemperatureDevice("Ostatni ruch", [
                     { title: "Parter", sensor: "10.11.0" },
                     { title: "Garaż", sensor: "10.11.1" },
                     { title: "Piętro", sensor: "10.11.2" },
                     { title: "Gospodarczy", sensor: "10.11.3" },
                     { title: "Zewnętrzne", sensor: "10.11.4" }
-                ], 150, " s"),
+                ], 150, "", (text: any) => { return FormatterHelper.time(text); }),
                 new TemperatureSensor('Temperatura zewnętrzna', "0.15.1"),
                 new SelectableDeviceBase("Selectable", "")
         ]];

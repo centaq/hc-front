@@ -7,11 +7,11 @@ import  "jquery-sparkline";
 export class RoomsTemperatureDevice extends DeviceBase implements IDevice {
     private sensors: RoomsTemperatureSensor[];
 
-    constructor(title: string, sensors: RoomsTemperatureSensor[], height: number, unit: string) {
+    constructor(title: string, sensors: RoomsTemperatureSensor[], height: number, unit: string, formatter: (text: any) => string) {
         super({
             content: new TestDeviceContent({
-                formatter: (text: string) => { return text + unit}
-            } as IDeviceContentOptions, sensors),
+                formatter: formatter
+            } as IDeviceContentOptions, sensors, unit),
             header: new DefaultDeviceHeader({
                 title: title,
                 collapsable: false,
@@ -51,11 +51,13 @@ class TestDeviceContent implements IDeviceContent {
     private uid: string;
     private options: IDeviceContentOptions;
     private sensors: RoomsTemperatureSensor[];
+    private unit: string;
 
-    constructor(options: IDeviceContentOptions, sensors: RoomsTemperatureSensor[]) {
+    constructor(options: IDeviceContentOptions, sensors: RoomsTemperatureSensor[], unit: string) {
         this.uid = Guid.create().toString();
         this.options = options;
         this.sensors = sensors;
+        this.unit = unit;
     }
 
     public render(): string {
@@ -95,7 +97,7 @@ class TestDeviceContent implements IDeviceContent {
             content += `
                 <div class="col-2" section="0" section-value="0">
                     <h6 class="left">
-                        <span>` + this.options.formatter('') + `</span>
+                        <span>` + this.unit + `</span>
                     </h6>
                 </div>
             </div>`;
@@ -109,12 +111,12 @@ class TestDeviceContent implements IDeviceContent {
 
     public update(data: any) {
         this.sensors.forEach(element => {
-            $("#" + this.uid + " [data='" + element.sensor + "']").text(data[element.sensor].data.toFixed(1));
+            $("#" + this.uid + " [data='" + element.sensor + "']").text(this.options.formatter(data[element.sensor].data));
             
             if (element.sensor1 !== undefined) {
                 var val = '';
                 if (data[element.sensor1] !== undefined && data[element.sensor1].data !== undefined && data[element.sensor1].data !== null) {
-                    val = "(" + data[element.sensor1].data.toFixed(1) + ")";
+                    val = "(" + this.options.formatter(data[element.sensor1].data) + ")";
                 }
                 $("#" + this.uid + " [data='" + element.sensor1 + "']").text(val);
             }
