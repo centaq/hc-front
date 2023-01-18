@@ -49,7 +49,8 @@ export class UIController {
                 this.mainPanel?.update(arg);
                 break;
             case UICmdEnum.UpdateDatetimeInfo:
-                $("div.debug-info div.timestamp-area span").text(new Date(arg).toLocaleString());
+                var txt = new Date(arg.reqDate).toLocaleTimeString()  + ' / ' + new Date(arg.dbDate).toLocaleTimeString();
+                $("div.debug-info div.timestamp-area span").text(txt);
                 break;
             case UICmdEnum.UpdateStatsData:
                 this.mainPanel?.update(arg);

@@ -157,7 +157,7 @@ export class StateController {
         if (this.state.isDataTokenSet) {
             if (arg.params == this.state.dataToken) {
                 extCmds.push(ExtCmd.createUICmd(UICmdEnum.UpdateDeviceData, arg.value));
-                extCmds.push(ExtCmd.createUICmd(UICmdEnum.UpdateDatetimeInfo, arg.date));
+                extCmds.push(ExtCmd.createUICmd(UICmdEnum.UpdateDatetimeInfo, { reqDate : arg.date, dbDate: arg.value.date }));
                 this.state.waitingForData = 50;
             } else {
                 extCmds.push(ExtCmd.createUICmd(UICmdEnum.LogMessage, "niepoprawny token. State: " + this.state.dataToken + "; z servera: " + arg.params));
