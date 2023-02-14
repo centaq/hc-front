@@ -4,7 +4,6 @@ import { PanelBase } from './PanelBase';
 import { LightDevice } from '../components/devices/LightDevice';
 import { LightFluentDevice } from '../components/devices/LightFluentDevice';
 import { GarageDoorDevice } from '../components/devices/GarageDoorDevice';
-import { LightLevelSensor } from '../components/sensors/LightLevelSensor';
 import { SmokeLevelSensor } from '../components/sensors/SmokeLevelSensor';
 import { TestTemperatureSensor } from '../components/sensors/TestTemperatureSensor';
 import { SelectableDeviceBase } from '../components/devices/SelectableDeviceBase';
@@ -43,7 +42,6 @@ export class Dashboard extends PanelBase implements IMainPanel {
                 new TestTemperatureSensor("Temperatura w pokoju"),
                 //new BoilerTemperatureSensor('Temperatura pieca', "1.15.1"),
                 new TemperatureSensor('Temperatura szafy', "2.14.1"),
-                new LightLevelSensor('Poziom światła', "0.15.2"),
                 new GarageDoorDevice("title", "33.33"),
                 new LightDevice("Światło biuro", "2.15.4"),
                 new LightDevice("Światło małe sypialnia", "2.16.4"),

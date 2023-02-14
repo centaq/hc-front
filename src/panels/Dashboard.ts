@@ -8,6 +8,7 @@ import { ActionMultiSensorType } from '../interfaces/IDevice';
 import { LightDelayDevice } from '../components/devices/LightDelayDevice';
 import { SelectableDeviceBase } from '../components/devices/SelectableDeviceBase';
 import { FormatterHelper } from '../helpers/FormatterHelper';
+import { LightLevelSensor } from '../components/sensors/LightLevelSensor';
 
 export class Dashboard extends PanelBase implements IMainPanel {
 
@@ -31,6 +32,7 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Trawa", sensor: "0.1.1", sensor1: "0.1.101", type: ActionMultiSensorType.Buttons },
                     { title: "Świerki", sensor: "0.1.2", sensor1: "0.1.102", type: ActionMultiSensorType.Buttons }
                 ], 150),
+                new LightLevelSensor('Poziom światła', "0.15.2"),
                 new ActionMultiDevice("Bezpieczniki", [
                     { title: "Pompy", sensor: "10.30.0", type: ActionMultiSensorType.PreviewOnOffControl },
                     { title: "Elektrozawory", sensor: "10.30.1", type: ActionMultiSensorType.PreviewOnOffControl }
