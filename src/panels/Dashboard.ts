@@ -15,28 +15,16 @@ export class Dashboard extends PanelBase implements IMainPanel {
     constructor() {
         super();
         this.devices = [ [
-                new AlarmDevice("alarm"),
+                new TemperatureSensor('Temperatura zewnętrzna', "0.15.1"),
                 new LightDelayDevice("Światło nad garażem", "0.2.0", [15, 30, 60, 120], "0.2.100"),
-                new ActionMultiDevice("Woda", [
-                    { title: "Ciśnienie", sensor: "10.0.1" , type: ActionMultiSensorType.Preview, unit: "bar" }, 
-                    { title: "Zawór wody", sensor: "10.0.2", type: ActionMultiSensorType.Buttons },
-                    { title: "Zasilanie pompy", sensor: "10.0.3", type: ActionMultiSensorType.Buttons }
-                ], 150),
-                new ActionMultiDevice("Świąteczne", [
-                    { title: "Nad garażem", sensor: "100.0.0", type: ActionMultiSensorType.Buttons },
-                    { title: "Choinka zew.", sensor: "100.0.1", type: ActionMultiSensorType.Buttons },
-                    { title: "Choinka wew.", sensor: "100.0.2", type: ActionMultiSensorType.Buttons }
-                ], 150),
-                new ActionMultiDevice("Podlewanie", [
-                    { title: "Podlewanie włączone", sensor: "0.1.0" , type: ActionMultiSensorType.Buttons }, 
-                    { title: "Trawa", sensor: "0.1.1", sensor1: "0.1.101", type: ActionMultiSensorType.Buttons },
-                    { title: "Świerki", sensor: "0.1.2", sensor1: "0.1.102", type: ActionMultiSensorType.Buttons }
-                ], 150),
                 new LightLevelSensor('Poziom światła', "0.15.2"),
-                new ActionMultiDevice("Bezpieczniki", [
-                    { title: "Pompy", sensor: "10.30.0", type: ActionMultiSensorType.PreviewOnOffControl },
-                    { title: "Elektrozawory", sensor: "10.30.1", type: ActionMultiSensorType.PreviewOnOffControl }
-                ], 150),
+                new RoomsTemperatureDevice("Ostatni ruch", [
+                    { title: "Parter", sensor: "10.11.0" },
+                    { title: "Garaż", sensor: "10.11.1" },
+                    { title: "Piętro", sensor: "10.11.2" },
+                    { title: "Gospodarczy", sensor: "10.11.3" },
+                    { title: "Zewnętrzne", sensor: "10.11.4" }
+                ], 150, "", (text: any) => { return FormatterHelper.time(text); }),
                 new ActionMultiDevice("Ogrzewanie", [
                     { title: "Stan kotła", sensor: "10.21.3", type: ActionMultiSensorType.Preview, unit: "", valueFormatter: FormatterHelper.heaterState},
                     { title: "Aktywność kotła", sensor: "avg.cd.10.21.4", type: ActionMultiSensorType.Preview, unit: "%", valueFormatter: FormatterHelper.decimalToPercentage },
@@ -84,15 +72,28 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Kuchnia", sensor: "1.14.16", sensor1: "1.14.26" },
                     { title: "Pralnia", sensor: "1.14.17", sensor1: "1.14.27" }
                 ], 250, " kWh", (text: any) => { return text.toFixed(1); }),
-                new RoomsTemperatureDevice("Ostatni ruch", [
-                    { title: "Parter", sensor: "10.11.0" },
-                    { title: "Garaż", sensor: "10.11.1" },
-                    { title: "Piętro", sensor: "10.11.2" },
-                    { title: "Gospodarczy", sensor: "10.11.3" },
-                    { title: "Zewnętrzne", sensor: "10.11.4" }
-                ], 150, "", (text: any) => { return FormatterHelper.time(text); }),
-                new TemperatureSensor('Temperatura zewnętrzna', "0.15.1"),
-                new SelectableDeviceBase("Selectable", "")
+                new SelectableDeviceBase("Selectable", ""),
+                new ActionMultiDevice("Bezpieczniki", [
+                    { title: "Pompy", sensor: "10.30.0", type: ActionMultiSensorType.PreviewOnOffControl },
+                    { title: "Elektrozawory", sensor: "10.30.1", type: ActionMultiSensorType.PreviewOnOffControl }
+                ], 150),
+                
+                new AlarmDevice("alarm"),
+                new ActionMultiDevice("Woda", [
+                    { title: "Ciśnienie", sensor: "10.0.1" , type: ActionMultiSensorType.Preview, unit: "bar" }, 
+                    { title: "Zawór wody", sensor: "10.0.2", type: ActionMultiSensorType.Buttons },
+                    { title: "Zasilanie pompy", sensor: "10.0.3", type: ActionMultiSensorType.Buttons }
+                ], 150),
+                new ActionMultiDevice("Świąteczne", [
+                    { title: "Nad garażem", sensor: "100.0.0", type: ActionMultiSensorType.Buttons },
+                    { title: "Choinka zew.", sensor: "100.0.1", type: ActionMultiSensorType.Buttons },
+                    { title: "Choinka wew.", sensor: "100.0.2", type: ActionMultiSensorType.Buttons }
+                ], 150),
+                new ActionMultiDevice("Podlewanie", [
+                    { title: "Podlewanie włączone", sensor: "0.1.0" , type: ActionMultiSensorType.Buttons }, 
+                    { title: "Trawa", sensor: "0.1.1", sensor1: "0.1.101", type: ActionMultiSensorType.Buttons },
+                    { title: "Świerki", sensor: "0.1.2", sensor1: "0.1.102", type: ActionMultiSensorType.Buttons }
+                ], 150),
         ]];
     }
 
