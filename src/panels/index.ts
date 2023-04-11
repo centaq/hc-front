@@ -1,4 +1,5 @@
 export * from './Dashboard'
+export * from './AniasDashboard'
 export * from './OfficePanel'
 export * from './BoilerRoom'
 export * from './OutsideDashboard'
