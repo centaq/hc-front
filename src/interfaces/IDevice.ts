@@ -330,11 +330,13 @@ export class PreviewRowComponent implements IActionComponent {
     private uid: string;
     private formatter: (text: string) => string;
     private sensors: string[];
+    private unit: string;
 
-    constructor(sensors: string[], formatter: (text: string) => string) {
+    constructor(sensors: string[], formatter: (text: string) => string, unit: string) {
         this.uid = Guid.create().toString();
         this.sensors = sensors;
         this.formatter = formatter;
+        this.unit = unit;
     }
 
     public render(): string {
@@ -380,7 +382,7 @@ export class PreviewRowComponent implements IActionComponent {
         content += `
             <div class="col-4" section="0" section-value="0">
                 <h6 class="left">
-                    <span>` + this.formatter('') + `</span>
+                    <span>` + this.unit + `</span>
                 </h6>
             </div>
         </div>`;
@@ -389,7 +391,7 @@ export class PreviewRowComponent implements IActionComponent {
 
     public update(data: any) {
         const sensor = this.sensors[0];
-        $("[id='" + this.uid + "_" + sensor + "'] span").html(data[sensor].data);
+        $("[id='" + this.uid + "_" + sensor + "'] span").html(this.formatter(data[sensor].data));
         if (this.sensors.length > 1) {
             $("[id='" + this.uid + "_" + this.sensors[1] + "'] span").html(data[this.sensors[1]].data);
         }
@@ -719,6 +721,7 @@ export interface ActionMultiSensor {
     sensor2?: string;
     sensor3?: string;
     unit?: string;
+    valueFormatter?: (state: any) => string;
 }
 
 export enum ActionMultiSensorType {

@@ -15,4 +15,31 @@ export class FormatterHelper {
         s_part = Math.floor(text % 60).toString();
         return h_part.padStart(2, '0') + ":" + m_part.padStart(2, '0') + ":" + s_part.padStart(2, '0');
     }
+
+    public static decimalToPercentage(dec: any): string {
+        return (dec * 100).toString();
+    }
+
+    public static heaterState(state: any): string {
+        return state + " - " + this.getStaticDescription(state);
+    }
+
+    private static getStaticDescription(state: any): string {
+        switch (state) {
+            case 2:
+                return "Praca";
+            case 17:
+                return "Nieudane rozpalanie";
+            case 31:
+                return "Rozpalanie";
+            case 33:
+                return "Czuwanie";
+            case 37:
+                return "Oczyszczanie rusztu";
+            case 58:
+                return "Wygaszanie";
+            default:
+                return "";
+        }
+    }
 }

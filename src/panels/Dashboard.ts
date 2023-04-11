@@ -38,12 +38,14 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     { title: "Elektrozawory", sensor: "10.30.1", type: ActionMultiSensorType.PreviewOnOffControl }
                 ], 150),
                 new ActionMultiDevice("Ogrzewanie", [
+                    { title: "Stan kotła", sensor: "10.21.3", type: ActionMultiSensorType.Preview, unit: "", valueFormatter: FormatterHelper.heaterState},
+                    { title: "Aktywność kotła", sensor: "1.10.60", sensor1: "10.21.4", type: ActionMultiSensorType.Preview, unit: "%", valueFormatter: FormatterHelper.decimalToPercentage },
                     { title: "CO", sensor: "1.10.60", sensor1: "1.10.61", type: ActionMultiSensorType.Preview, unit: "°C" },
                     { title: "CWU", sensor: "1.10.62", sensor1: "1.10.63", sensor2: "1.10.70", type: ActionMultiSensorType.Preview, unit: "°C" },
                     { title: "Powrót", sensor: "1.10.64", type: ActionMultiSensorType.Preview, unit: "°C" },
                     { title: "Spaliny", sensor: "1.10.65", type: ActionMultiSensorType.Preview, unit: "°C" },
                     { title: "Opał", sensor: "10.21.2", type: ActionMultiSensorType.Preview, unit: "" },
-                ], 150),
+                ], 210),
                 new ActionMultiDevice("Ogrzewanie parter", [
                     { title: "Pompa", sensor: "10.21.0", sensor1: "avg.cd.10.21.0", type: ActionMultiSensorType.PreviewOnOffControl },
                     { title: "Wiatrołap", sensor: "1.1.1", sensor1: "10.20.6", sensor2: "c.10.20.0", sensor3: "avg.cd.10.20.6", type: ActionMultiSensorType.Heater },

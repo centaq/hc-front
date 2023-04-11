@@ -72,7 +72,7 @@ class ActionMultiDeviceContent implements IDeviceContent {
             if (el.type === ActionMultiSensorType.Buttons) {
                 component = new ButtonsActionComponent(arr, stateChange);
             } else if (el.type === ActionMultiSensorType.Preview) {
-                component = new PreviewRowComponent(arr,  (text: string) => { return text + el.unit});
+                component = new PreviewRowComponent(arr,  (text: string) => { return el.valueFormatter === undefined ? text : el.valueFormatter(text) }, (el.unit ?? ''));
             } else if (el.type === ActionMultiSensorType.Heater) {
                 component = new HeaterRowComponent(arr,  (text: string) => { return text + "°C "});
             } else if (el.type === ActionMultiSensorType.PreviewOnOffControl) {
