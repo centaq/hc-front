@@ -210,7 +210,7 @@ export class StateController {
         if (session.user.toLowerCase() === "marcin") {
             panel = PanelEnum.Dashboard;
         } else if (session.user.toLowerCase() === "ania") {
-            panel = PanelEnum.OfficePanel;
+            panel = PanelEnum.AniasDashboard;
         }
         extCmds.push(ExtCmd.createUICmd(UICmdEnum.LoadLayout));
         extCmds = extCmds.concat(this.switchPanel(panel));
