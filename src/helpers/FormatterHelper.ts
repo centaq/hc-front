@@ -17,11 +17,11 @@ export class FormatterHelper {
     }
 
     public static decimalToPercentage(dec: any): string {
-        return (dec * 100).toString();
+        return (dec * 100).toFixed(1);
     }
 
     public static heaterState(state: any): string {
-        return state + " - " + this.getStaticDescription(state);
+        return state + " - " + FormatterHelper.getStaticDescription(state);
     }
 
     private static getStaticDescription(state: any): string {
