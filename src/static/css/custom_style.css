@@ -147,13 +147,16 @@ body {
     margin-left: 200px;
 	transition: all 0.3s;
 }
-.mini-navbar .content-inner-all {
-    margin-left: 80px;
-    transition: all 0.3s;
-}
-div.sidebar-header {
-	background-color: #f3f3f3;
-	padding: 8px;
+
+@media (min-width: 767px) {
+    .mini-navbar .content-inner-all {
+        margin-left: 80px;
+        transition: all 0.3s;
+    }
+    div.sidebar-header {
+        background-color: #f3f3f3;
+        padding: 8px;
+    }
 }
 
 div.left-sidebar-pro {
@@ -447,4 +450,9 @@ img.logo {
     background-color: #0a58ca; 
     position: absolute;
     width: 1%; 
+  }
+
+  h6.overflown-title {
+    overflow: hidden;
+    white-space: nowrap;
   }

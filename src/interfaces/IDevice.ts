@@ -341,51 +341,60 @@ export class PreviewRowComponent implements IActionComponent {
 
     public render(): string {
         let content = ``;
-        content += `<div class="row">`;
+        content += `<div class="row flex-nowrap">`;
+        const withoutUnit = this.unit == "";
+
         if (this.sensors.length > 2) {
+            var width1 = withoutUnit ? "6" : "4";
+            var width2 = withoutUnit ? "3" : "2";
             content += `
-                <div class="col-4" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
+                <div class="col-` + width1 + `" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
                     <h6 class="right">
                         <span data='` + this.sensors[0] + `'>12.3</span>
                     </h6>
                 </div>
-                <div class="col-2" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[1] + `">
+                <div class="col-` + width2 + `" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[1] + `">
                     <h6 class="right">
                         <span data='` + this.sensors[1] + `'>12.3</span>
                     </h6>
                 </div>
-                <div class="col-2" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[2] + `">
+                <div class="col-` + width2 + `" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[2] + `">
                     <h6 class="right">
                         <span data='` + this.sensors[2] + `'>12.3</span>
                     </h6>
                 </div>`;
         } else if (this.sensors.length > 1) {
+            var width = withoutUnit ? "6" : "4";
             content += `
-                <div class="col-4" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
+                <div class="col-` + width + `" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
                     <h6 class="right">
                         <span data='` + this.sensors[0] + `'>12.3</span>
                     </h6>
                 </div>
-                <div class="col-4" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[1] + `">
+                <div class="col-` + width + `" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[1] + `">
                     <h6 class="right">
                         <span data='` + this.sensors[1] + `'>12.3</span>
                     </h6>
                 </div>`;
         } else {
+            var width = withoutUnit ? "12" : "8";
             content += `
-                <div class="col-8" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
+                <div class="col-` + width + `" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
                     <h6 class="right">
                         <span data='` + this.sensors[0] + `'>12.3</span>
                     </h6>
                 </div>`;
         }
-        content += `
-            <div class="col-4" section="0" section-value="0">
-                <h6 class="left">
-                    <span>` + this.unit + `</span>
-                </h6>
-            </div>
-        </div>`;
+        if (!withoutUnit) {
+            content += `
+                <div class="col-4" section="0" section-value="0">
+                    <h6 class="left">
+                        <span>` + this.unit + `</span>
+                    </h6>
+                </div>`;
+        }
+
+        content += `</div>`;
         return content;
     }
 
@@ -421,8 +430,8 @@ export class HeaterRowComponent implements IActionComponent {
 
     public render(): string {
         let content = ``;
+        content += `<div class="row flex-nowrap" style="position: relative;">`;
         if (this.sensors.length > 1) {
-            content += `<div class="row" style="position: relative;">`;
             content += `    <div class="heating-bar-container">`;
             content += `        <div id="` + this.uid + "_" + this.sensors[3] + `" data='` + this.sensors[3] + `' class="heating-bar"></div>`;
             content += `    </div>
@@ -437,7 +446,6 @@ export class HeaterRowComponent implements IActionComponent {
                     </h6>
                 </div>`;
         } else {
-            content += `<div class="row" style="position: relative;">`;
             content += `<div style="height:1px; background-color: #cde1fe; position: absolute; padding: 0px;"></div>`;
             content += `
                 <div class="col-8" section="0" section-value="0" id="` + this.uid + "_" + this.sensors[0] + `">
@@ -498,13 +506,13 @@ export class PreviewOnOffRowComponent implements IActionComponent {
     public render(): string {
         let content = ``;
         if (this.sensors.length > 1) {
-            content += `<div class="row" style="position: relative;">`;
+            content += `<div class="row flex-nowrap" style="position: relative;">`;
             content += `    <div class="heating-bar-container">`;
             content += `        <div id="` + this.uid + "_" + this.sensors[1] + `" data='` + this.sensors[1] + `' class="heating-bar"></div>`;
             content += `    </div>`;
 
         } else {
-            content += `<div class="row">`;
+            content += `<div class="row flex-nowrap">`;
 
         }
 

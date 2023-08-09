@@ -27,7 +27,7 @@ export class Dashboard extends PanelBase implements IMainPanel {
                 ], 150, "", (text: any) => { return FormatterHelper.time(text); }),
                 new ActionMultiDevice("Ogrzewanie", [
                     { title: "Stan kotła", sensor: "10.21.3", type: ActionMultiSensorType.Preview, unit: "", valueFormatter: FormatterHelper.heaterState},
-                    { title: "Aktywność kotła", sensor: "avg.cd.10.21.4", type: ActionMultiSensorType.Preview, unit: "%", valueFormatter: FormatterHelper.decimalToPercentage },
+                    { title: "Kocioł ON", sensor: "avg.cd.10.21.4", type: ActionMultiSensorType.Preview, unit: "%", valueFormatter: FormatterHelper.decimalToPercentage },
                     { title: "CO", sensor: "1.10.60", sensor1: "1.10.61", type: ActionMultiSensorType.Preview, unit: "°C" },
                     { title: "CWU", sensor: "1.10.62", sensor1: "1.10.63", sensor2: "1.10.70", type: ActionMultiSensorType.Preview, unit: "°C" },
                     { title: "Powrót", sensor: "1.10.64", type: ActionMultiSensorType.Preview, unit: "°C" },

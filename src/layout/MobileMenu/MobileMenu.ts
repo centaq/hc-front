@@ -70,7 +70,7 @@ export class MobileMenu extends ComponentBase implements IComponent {
         <div class="header-top-area">
             <div class="fixed-header-top">
                 <div class="container-fluid">
-                    <div class="row">
+                    <div class="row menu-place">
                         <div class="mobile-menu-placeholder col-lg-1 col-md-6 col-sm-6 col-xs-5">
                             
                         </div>

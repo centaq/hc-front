@@ -101,13 +101,13 @@ class ActionMultiDeviceContent implements IDeviceContent {
     private generateRow(title: string, component: IActionComponent): string {
         let content : string = `
         <div class="row" style="">
-            <div class="col-6" section="0" section-value="0">
-                <h6 class="" style="">
+            <div class="col-5" section="0" section-value="0">
+                <h6 class="overflown-title" style="">
                     ` + title + `
                 </h6>
             </div>`;
         content += `
-            <div class="col-6" section="0" section-value="0">
+            <div class="col-7" section="0" section-value="0">
                 `;
         content += component.render();
         content += `

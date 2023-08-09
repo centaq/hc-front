@@ -69,14 +69,14 @@ class TestDeviceContent implements IDeviceContent {
         this.sensors.forEach(element => {
             content += `
             <div class="row">
-                <div class="col-6" section="0" section-value="0">
-                    <h6 class="">
+                <div class="col-5" section="0" section-value="0">
+                    <h6 class="overflown-title">
                         ` + element.title + `
                     </h6>
                 </div>`;
             if (element.sensor1 !== undefined) {
                 content += `
-                    <div class="col-2" section="0" section-value="0">
+                    <div class="col-3" section="0" section-value="0">
                         <h6 class="right">
                             <span data='` + element.sensor + `'>12.3</span>
                         </h6>
@@ -88,7 +88,7 @@ class TestDeviceContent implements IDeviceContent {
                     </div>`;
             } else {
                 content += `
-                    <div class="col-4" section="0" section-value="0">
+                    <div class="col-5" section="0" section-value="0">
                         <h6 class="right">
                             <span data='` + element.sensor + `'>12.3</span>
                         </h6>

@@ -30,7 +30,7 @@
 				var defaults = {
 						meanMenuTarget: jQuery(this), // Target the current HTML markup you wish to replace
 						meanMenuButtonContainer: '.mobile-menu-placeholder',
-						meanMenuContainer: '.container-fluid .row',//'.mobile-menu-placeholder',//'.mobile-menu-area .container', // Choose where meanmenu will be placed within the HTML
+						meanMenuContainer: '.container-fluid .menu-place',//'.mobile-menu-placeholder',//'.mobile-menu-area .container', // Choose where meanmenu will be placed within the HTML
 						meanMenuClose: "X", // single character you want to represent the close menu button
 						meanMenuCloseSize: "18px", // set font size of close button
 						meanMenuOpen: "<span /><span /><span />", // text/markup you want when menu is closed
@@ -74,7 +74,7 @@
 						var onePage = options.onePage;
 						var meanDisplay = options.meanDisplay;
 						var removeElements = options.removeElements;
-
+						
 						//detect known mobile/tablet usage
 						var isMobile = false;
 						if ( (navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i)) || (navigator.userAgent.match(/Android/i)) || (navigator.userAgent.match(/Blackberry/i)) || (navigator.userAgent.match(/Windows Phone/i)) ) {
@@ -139,12 +139,15 @@
 							jQuery(removeElements).removeClass('mean-remove');
 						};
 
+						console.log((meanContainer));
+						console.log($(meanContainer));
 						// navigation reveal
 						var showMeanMenu = function() {
 								var meanStyles = "background:"+meanRevealColour+";color:"+meanRevealColour+";"+meanRevealPos;
 								if (currentWidth <= meanScreenWidth) {
 								jQuery(removeElements).addClass('mean-remove');
 									meanMenuExist = true;
+									console.log(jQuery(meanContainer));
 									// add class to body so we don't need to worry about media queries here, all CSS is wrapped in '.mean-container'
 									jQuery(meanMenuButtonContainer).addClass("mean-button-container");
 									jQuery(meanContainer).addClass("mean-container");
