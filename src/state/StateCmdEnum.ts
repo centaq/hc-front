@@ -12,5 +12,6 @@ export enum StateCmdEnum {
     DeviceStateChange,
     ShowPopup,
     StatsRefresh,
-    StatsRefreshResult
+    StatsRefreshResult,
+    VisibilityChanged
 }

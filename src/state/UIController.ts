@@ -23,6 +23,9 @@ export class UIController {
             case UICmdEnum.LogMessage:
                 console.log(arg);
                 break;
+            case UICmdEnum.WaitingForDataState:
+                $("#status-area-wait-time").text(arg);
+                break;
             case UICmdEnum.ShowMessage:
                 alert(arg.msg);
                 break;
@@ -48,9 +51,23 @@ export class UIController {
             case UICmdEnum.UpdateDeviceData:
                 this.mainPanel?.update(arg);
                 break;
-            case UICmdEnum.UpdateDatetimeInfo:
-                var txt = new Date(arg.reqDate).toLocaleTimeString()  + ' / ' + new Date(arg.dbDate).toLocaleTimeString();
-                $("div.debug-info div.timestamp-area span").text(txt);
+            case UICmdEnum.DataActualityState:
+                var icon = $("#status-area-icon span");
+                if (arg.state) {
+                    icon.removeClass("fa-times");
+                    icon.addClass("fa-check");
+                    icon.css("color", "green");
+                } else {
+                    icon.removeClass("fa-check");
+                    icon.addClass("fa-times");
+                    icon.css("color", "red");
+                }
+                var req = arg.state ? new Date(arg.reqDate).toLocaleTimeString() : "-";
+                var db = arg.state ? new Date(arg.dbDate).toLocaleTimeString() : "-";
+                
+                $("#status-area-refresh-date").text(req);
+                $("#status-area-db-date").text(db);
+                
                 break;
             case UICmdEnum.UpdateStatsData:
                 this.mainPanel?.update(arg);

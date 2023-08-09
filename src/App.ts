@@ -26,6 +26,20 @@ export class App {
         if (this.ticker100ms) {}
     }
 
+    public visibilityChanged(state: string) {
+        StateQueue.enqueue(StateCmdEnum.VisibilityChanged, state === "visible");
+        /*
+        if (state === "visible") {
+            if (this.reappearing) {
+                clearInterval(this.ticker100ms);
+                this.ticker100ms = setInterval(this.ticker100msHandler, 100);
+                console.log('daone');
+            }
+        } else if (state === "hidden") {
+            this.reappearing = true;
+        }*/
+    }
+
     public test() {
         console.log('aa');
     }

@@ -67,7 +67,7 @@ export class SidebarMenu extends ComponentBase implements IComponent {
     public render(): string {
 
         let content = ` <div class="left-sidebar">
-        <nav id="sidebar">` + 
+        <nav id="sidebar" class="active">` + 
             this.header.render()
         + `
             <div class="sidebar-menu-wrapper">

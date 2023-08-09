@@ -4,7 +4,7 @@ import { ExtCmd } from "./ExtCmd";
 import { ExtCmdType } from "./ExtCmdType";
 import { StateCmdEnum } from "./StateCmdEnum";
 import { StateController } from "./StateController";
-import { UICmdEnum } from "./UICmdEnum";
+//import { UICmdEnum } from "./UICmdEnum";
 import { UIController } from "./UIController";
 
 export class StateQueue {
@@ -26,7 +26,7 @@ export class StateQueue {
                 DataController.exec(extCmd.getCmd, extCmd.getArg);
                 break;
             case ExtCmdType.UI:
-                console.log({cmdType: ExtCmdType[extCmd.getCmdType], cmd: UICmdEnum[extCmd.getCmd], arg: extCmd.getArg});
+                //console.log({cmdType: ExtCmdType[extCmd.getCmdType], cmd: UICmdEnum[extCmd.getCmd], arg: extCmd.getArg});
                 UIController.exec(extCmd.getCmd, extCmd.getArg);
                 break;
         }

@@ -1,5 +1,7 @@
 export enum UICmdEnum {
     LogMessage,
+    DataActualityState,
+    WaitingForDataState,
     LoadLayout,
     MountPanel,
     SwitchPanel,
@@ -9,6 +11,5 @@ export enum UICmdEnum {
     UpdateDeviceData,
     UpdateStatsData,
     ShowPopup,
-    ShowMessage,
-    UpdateDatetimeInfo
+    ShowMessage
 }

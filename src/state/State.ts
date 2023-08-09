@@ -6,6 +6,7 @@ export class State {
     public backgroundWorkerProcessing: boolean;
     public loading: boolean;
     public deviceDefinition: IDevicesDefinitions | null;
+    public reappearing: boolean;
 
     public waitingForData: number;
     public dataToken: string;

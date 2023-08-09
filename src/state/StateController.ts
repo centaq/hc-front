@@ -59,6 +59,9 @@ export class StateController {
             case StateCmdEnum.StatsRefreshResult:
                 extCmds = this.statsRefreshResult(arg);
                 break;
+            case StateCmdEnum.VisibilityChanged:
+                extCmds = this.visibilityChanged(arg);
+                break;
         }
         return extCmds;
     }
@@ -66,6 +69,7 @@ export class StateController {
     private static tick100ms(): Array<ExtCmd> {
         var extCmds: Array<ExtCmd> = new Array<ExtCmd>();
         if (this.state.isDataTokenSet) {
+            extCmds.push(ExtCmd.createUICmd(UICmdEnum.WaitingForDataState, this.state.waitingForData));
             if(this.state.waitingForData == 1) {
                 extCmds.push(ExtCmd.createDataCmd(DataCmdEnum.GetDeviceData, this.state.dataToken));
             }
@@ -157,7 +161,7 @@ export class StateController {
         if (this.state.isDataTokenSet) {
             if (arg.params == this.state.dataToken) {
                 extCmds.push(ExtCmd.createUICmd(UICmdEnum.UpdateDeviceData, arg.value));
-                extCmds.push(ExtCmd.createUICmd(UICmdEnum.UpdateDatetimeInfo, { reqDate : arg.date, dbDate: arg.value.date }));
+                extCmds.push(ExtCmd.createUICmd(UICmdEnum.DataActualityState, { state: true, reqDate : arg.date, dbDate: arg.value.date }));
                 this.state.waitingForData = 50;
             } else {
                 extCmds.push(ExtCmd.createUICmd(UICmdEnum.LogMessage, "niepoprawny token. State: " + this.state.dataToken + "; z servera: " + arg.params));
@@ -214,6 +218,22 @@ export class StateController {
         }
         extCmds.push(ExtCmd.createUICmd(UICmdEnum.LoadLayout));
         extCmds = extCmds.concat(this.switchPanel(panel));
+        return extCmds;
+    }
+
+    private static visibilityChanged(visible: boolean) : Array<ExtCmd> {
+        var extCmds: Array<ExtCmd> = new Array<ExtCmd>();
+        if (!visible) {
+            this.state.reappearing = true;
+            this.state.waitingForData = 0;
+            extCmds.push(ExtCmd.createUICmd(UICmdEnum.DataActualityState, { state: false, reqDate : null, dbDate: null }));
+        } else {
+            if (this.state.reappearing) {
+                this.state.waitingForData = 10;
+            }
+
+            this.state.reappearing = false;
+        }
         return extCmds;
     }
 }

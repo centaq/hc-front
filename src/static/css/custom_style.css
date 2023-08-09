@@ -166,7 +166,10 @@ div.left-sidebar-pro {
 	max-width: 80px;
 	text-align: center;
 }
-div.sidebar-header-button-area {
+#sidebar.active .sidebar-header div.sidebar-header-button-area {
+	display: block;
+}
+#sidebar:not(.active) .sidebar-header div.sidebar-header-button-area {
 	display: flex;
 }
 
@@ -248,6 +251,20 @@ icon, .sparkline7-outline-icon, .sparkline8-outline-icon, .sparkline9-outline-ic
 }
 
 
+
+.status-area {
+	background-color: #fff;
+	padding: 2px;
+    font-size: 0.8rem;
+	text-align: center;
+    height: 26px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 100000;
+    border: #1f2e86 solid 1px;
+}
 
 .login-bg {
     background: #fff;
@@ -375,10 +392,16 @@ img.logo {
     .content-inner-all {
         margin-left: 0px;
     }
+    .header-top-area {
+        height: 60px;
+    }
 }
 @media (min-width: 767px) {
     .left-sidebar {
         display: block;
+    }
+    .header-top-area {
+        height: 3px;
     }
 }
 
@@ -386,9 +409,6 @@ img.logo {
     background: #1f2e86;
 }
 
-.header-top-area {
-    height: 60px;
-}
 .header-top-area {
     box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
 }

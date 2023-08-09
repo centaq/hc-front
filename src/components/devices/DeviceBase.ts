@@ -15,7 +15,7 @@ export abstract class DeviceBase implements IDevice {
         this.uid = Guid.create().toString();
         this.options = options;
         this.height = height + 'px';
-        this.classOverride = "col-lg-3 col-md-4 col-sm-6";
+        this.classOverride = "col-xl-3 col-lg-4 col-md-4 col-sm-6";
     }
 
     public getUID(): string {
