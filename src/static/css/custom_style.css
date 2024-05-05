@@ -437,7 +437,7 @@ img.logo {
     box-shadow: 0 0 0 3px #ea6643;
   }
 
-  div.heating-bar-container {
+  div.heating-bar-container, div.progress-bar-container  {
     height:1px; 
     background-color: #cde1fe; 
     position: absolute;
@@ -445,7 +445,7 @@ img.logo {
   }
 
   
-  div.heating-bar {
+  div.heating-bar,  div.progress-bar {
     height:1px; 
     background-color: #0a58ca; 
     position: absolute;

@@ -1,5 +1,5 @@
 
-import { IDevice, IDeviceOptions, IDeviceContent, IDeviceContentOptions, DefaultDeviceHeader, IDeviceHeaderOptions, ActionMultiSensor, IActionComponent, ButtonsActionComponent, ActionMultiDeviceContentRow, ActionMultiSensorType, PreviewRowComponent, HeaterRowComponent, PreviewOnOffRowComponent } from "../../interfaces/IDevice";
+import { IDevice, IDeviceOptions, IDeviceContent, IDeviceContentOptions, DefaultDeviceHeader, IDeviceHeaderOptions, ActionMultiSensor, IActionComponent, ButtonsActionComponent, ActionMultiDeviceContentRow, ActionMultiSensorType, PreviewRowComponent, HeaterRowComponent, PreviewOnOffRowComponent, DefinableActionComponent, ActionDefinablePartType } from "../../interfaces/IDevice";
 import { DeviceBase } from "./DeviceBase";
 import { Guid } from 'guid-typescript';
 import  "jquery-sparkline";
@@ -24,7 +24,9 @@ export class ActionMultiDevice extends DeviceBase implements IDevice {
     public getDefinition(): any {
         let definition = {};
         this.sensors.forEach(element => {
-            definition[element.sensor] = { stats: false };
+            if (element.sensor !== undefined) {
+                definition[element.sensor] = { stats: false };
+            }
             if (element.sensor1 !== undefined) {
                 definition[element.sensor1] = { stats: false };
             }
@@ -34,6 +36,11 @@ export class ActionMultiDevice extends DeviceBase implements IDevice {
             if (element.sensor3 !== undefined) {
                 definition[element.sensor3] = { stats: false };
             }
+            element.parts?.forEach(part => {
+                if (part.sensor != undefined) {
+                    definition[part.sensor] = { stats: false };
+                }
+            });
         });
         return definition;
     }
@@ -58,7 +65,10 @@ class ActionMultiDeviceContent implements IDeviceContent {
         this.sensors = sensors;
 
         this.sensors.forEach((el) => {
-            let arr = [ el.sensor ];
+            let arr = [ ];
+            if (el.sensor !== undefined) {
+                arr.push(el.sensor);
+            }
             if (el.sensor1 !== undefined) {
                 arr.push(el.sensor1);
             }
@@ -77,6 +87,14 @@ class ActionMultiDeviceContent implements IDeviceContent {
                 component = new HeaterRowComponent(arr,  (text: string) => { return text + "°C "});
             } else if (el.type === ActionMultiSensorType.PreviewOnOffControl) {
                 component = new PreviewOnOffRowComponent(arr);
+            } else if (el.type === ActionMultiSensorType.PreviewValueOnOff) {  
+                component = new DefinableActionComponent([
+                    { sensor: el.sensor!, valueFormatter: el.valueFormatter, type: ActionDefinablePartType.Value},
+                    { label: el.unit!, type: ActionDefinablePartType.Unit},
+                    { sensor: el.sensor1!, type: ActionDefinablePartType.ActiveDot},
+                ]);
+            } else if (el.type === ActionMultiSensorType.Definable) {
+                component = new DefinableActionComponent(el.parts!);
             } else {
                 
             }

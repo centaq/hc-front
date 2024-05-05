@@ -417,6 +417,106 @@ export class PreviewRowComponent implements IActionComponent {
     }
 }
 
+export class DefinableActionComponent implements IActionComponent {
+    private uid: string;
+    private parts: ActionDefinablePart[];
+
+    constructor(parts: ActionDefinablePart[]) {
+        this.uid = Guid.create().toString();
+        this.parts = parts;
+    }
+
+    public render(): string {
+        let fixedCols = 0;
+        let irrelevantParts = 0;
+        this.parts.forEach(part => {
+            if (part.type == ActionDefinablePartType.Unit || part.type == ActionDefinablePartType.ActiveDot) {
+                irrelevantParts++;
+                fixedCols += (part.colWidth ?? 2);
+            } else if (part.type == ActionDefinablePartType.ProgressBar) {
+                irrelevantParts++;
+            }
+        });
+        const colWidth = (12 - fixedCols) / (Math.max(this.parts.length - irrelevantParts, 1));
+        let progressBarContent = '';
+        let mainContent = '';
+        let unitContent = '';
+        let dotContent = '';
+
+        this.parts.forEach(part => {
+            if (part.type == ActionDefinablePartType.ProgressBar) {
+                progressBarContent = `
+                    <div class="progress-bar-container">
+                        <div id="` + this.uid + "_" + part.sensor + `" data='` + part.sensor + `' class="progress-bar"></div>
+                    </div>`;
+            } else if (part.type == ActionDefinablePartType.Value) {
+                mainContent += `
+                <div class="col-` + colWidth + `" section="0" section-value="0" id="` + this.uid + "_" + part.sensor + `">
+                    <h6 class="right">
+                        <span data='` + part.sensor + `'>-</span>
+                    </h6>
+                </div>`;
+            } else if (part.type == ActionDefinablePartType.Unit) {
+                unitContent = `
+                    <div class="col-` + (part.colWidth ?? 2) + `" section="0" section-value="0">
+                        <h6 class="left">
+                            <span>` + part.label + `</span>
+                        </h6>
+                    </div>`;
+            } else if (part.type == ActionDefinablePartType.ActiveDot) {
+                dotContent = `
+                    <div class="col-` + (part.colWidth ?? 2) + `" section="0" section-value="0" id="` + this.uid + "_" + part.sensor + `">
+                        <h6 class="right">
+                            <span class="dot"></span>
+                        </h6>
+                    </div>`;
+            }
+        });
+
+        if (mainContent == '') {
+            mainContent = `<div class="col-` + colWidth + `"></div>`;
+        }
+
+        let content = ``;
+        content += `<div class="row flex-nowrap">`;
+        //content += `<div class="row flex-nowrap" style="position: relative;">`;
+        
+        content += progressBarContent;
+        content += mainContent;
+        content += unitContent;
+        content += dotContent;
+        
+        content += `</div>`;
+        return content;
+    }
+
+    public update(data: any) {
+        this.parts.forEach(part => {
+            if (part.type == ActionDefinablePartType.ProgressBar) {
+                $("[id='" + this.uid + "_" + part.sensor + "']").css("width", (90 * data[part.sensor!].data) + "%");
+            } else if (part.type == ActionDefinablePartType.Value) {
+                const val = part.valueFormatter != undefined ? part.valueFormatter(data[part.sensor!].data) : data[part.sensor!].data;
+                $("[id='" + this.uid + "_" + part.sensor + "'] span").html(val);
+            } else if (part.type == ActionDefinablePartType.Unit) {
+            } else if (part.type == ActionDefinablePartType.ActiveDot) {
+                var el = $("[id='" + this.uid + "_" + part.sensor + "'] span");
+                if (data[part.sensor!].data) {
+                    el.addClass("active-dot");
+                } else {
+                    el.removeClass("active-dot");
+                }
+            }
+        });
+    }
+
+    public bind() {
+    }
+
+    public unbind() {
+
+    }
+}
+
 export class HeaterRowComponent implements IActionComponent {
     private uid: string;
     private formatter: (text: string) => string;
@@ -723,20 +823,38 @@ export interface RoomsTemperatureSensor {
 
 export interface ActionMultiSensor {
     title: string;
-    type: ActionMultiSensorType
-    sensor: string;
+    type: ActionMultiSensorType;
+    sensor?: string;
     sensor1?: string;
     sensor2?: string;
     sensor3?: string;
     unit?: string;
     valueFormatter?: (state: any) => string;
+    parts?: ActionDefinablePart[];
+}
+
+export interface ActionDefinablePart {
+    type: ActionDefinablePartType;
+    sensor?: string;
+    label?: string;
+    colWidth?: number;
+    valueFormatter?: (state: any) => string;
+}
+
+export enum ActionDefinablePartType {
+    ProgressBar,
+    Value,
+    Unit,
+    ActiveDot
 }
 
 export enum ActionMultiSensorType {
     Buttons,
     Preview,
     Heater,
-    PreviewOnOffControl
+    PreviewOnOffControl,
+    PreviewValueOnOff,
+    Definable
 }
 
 export interface ActionMultiDeviceContentRow {
