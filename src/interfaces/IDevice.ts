@@ -651,6 +651,7 @@ export class PreviewOnOffRowComponent implements IActionComponent {
     }
 }
 
+
 export class SelectableDeviceContent implements IDeviceContent {
     private uid: string;
     private options: IDeviceContentOptions;
@@ -819,6 +820,12 @@ export interface RoomsTemperatureSensor {
     sensor: string;
     sensor1?: string;
     sensor2?: string;
+}
+
+export interface OvercurrentPreviewSensor {
+    code: string;
+    title: string;
+    sensor: string;
 }
 
 export interface ActionMultiSensor {

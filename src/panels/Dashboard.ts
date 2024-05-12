@@ -9,6 +9,7 @@ import { LightDelayDevice } from '../components/devices/LightDelayDevice';
 import { SelectableDeviceBase } from '../components/devices/SelectableDeviceBase';
 import { FormatterHelper } from '../helpers/FormatterHelper';
 import { LightLevelSensor } from '../components/sensors/LightLevelSensor';
+import { OvercurrentPreviewDevice } from '../components/devices/OvercurrentPreviewDevice';
 
 export class Dashboard extends PanelBase implements IMainPanel {
 
@@ -29,12 +30,32 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     ], type: ActionMultiSensorType.Definable }, 
                     { title: "Świerki", sensor: "0.1.1", sensor1: "0.1.101", type: ActionMultiSensorType.Buttons },
                     { title: "Ogródek", sensor: "0.1.2", sensor1: "0.1.102", type: ActionMultiSensorType.Buttons },
-                    { title: "Trawa", sensor: "0.1.3", sensor1: "0.1.102", type: ActionMultiSensorType.Buttons }
+                    { title: "Trawa", sensor: "0.1.3", sensor1: "0.1.103", type: ActionMultiSensorType.Buttons }
                 ], 150),
-                new ActionMultiDevice("Bezpieczniki", [
-                    { title: "Pompy", parts: [ { sensor: "10.30.0", type: ActionDefinablePartType.ActiveDot }], type: ActionMultiSensorType.Definable },
-                    { title: "Elektrozawory", parts: [ { sensor: "10.30.1", type: ActionDefinablePartType.ActiveDot }], type: ActionMultiSensorType.Definable }
-                ], 150),
+                new OvercurrentPreviewDevice("Bezpieczniki", [
+                    { code: "PP", title: "Przeciwprzepięciówka", sensor: "10.30.0" },
+                    { code: "R1", title: "Trzyfazowe", sensor: "10.30.1" },
+                    { code: "S1", title: "Pompa ciepła", sensor: "10.30.2" },
+                    { code: "S5", title: "Rozdzielnica", sensor: "10.30.3" },
+                    { code: "R2", title: "Ośw. garaż", sensor: "10.30.4" },
+                    { code: "R3", title: "G. poddasze", sensor: "10.30.5" },
+                    { code: "R4", title: "Pralnia i łaz", sensor: "10.30.6" },
+                    { code: "R5", title: "Studnia i brama", sensor: "10.30.7" },
+                    { code: "S25", title: "Studni", sensor: "10.30.8" },
+                    { code: "S26", title: "Brama", sensor: "10.30.9" },
+                    { code: "R6", title: "Rekuperator", sensor: "10.30.10" },
+                    { code: "R7", title: "Altana, gniazdka", sensor: "10.30.11" },
+                    { code: "R8", title: "Ogrzewanie", sensor: "10.30.12" },
+                    { code: "S32", title: "Rozdzielacze", sensor: "10.30.13" },
+                    { code: "S33", title: "Kocioł", sensor: "10.30.14" },
+                    { code: "S34", title: "Pompy", sensor: "10.30.15" },
+                    { code: "S35", title: "Bojler", sensor: "10.30.16" },
+                    { code: "R9", title: "Kuchnia", sensor: "10.30.17" },
+                    { code: "S37", title: "Lodówka", sensor: "10.30.18" },
+                    { code: "R10", title: "G. dół", sensor: "10.30.19" },
+                    { code: "S43", title: "Teletechnika", sensor: "10.30.20" },
+                    { code: "R11", title: "G. garaż", sensor: "10.30.21" }
+                ], 340),
                 new RoomsTemperatureDevice("Ostatni ruch", [
                     { title: "Parter", sensor: "10.11.0" },
                     { title: "Garaż", sensor: "10.11.1" },
