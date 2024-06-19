@@ -30,8 +30,9 @@ export class Dashboard extends PanelBase implements IMainPanel {
                     ], type: ActionMultiSensorType.Definable }, 
                     { title: "Świerki", sensor: "0.1.1", sensor1: "0.1.101", type: ActionMultiSensorType.Buttons },
                     { title: "Ogródek", sensor: "0.1.2", sensor1: "0.1.102", type: ActionMultiSensorType.Buttons },
-                    { title: "Trawa", sensor: "0.1.3", sensor1: "0.1.103", type: ActionMultiSensorType.Buttons }
-                ], 150),
+                    { title: "Trawa", sensor: "0.1.3", sensor1: "0.1.103", type: ActionMultiSensorType.Buttons },
+                    { title: "Plac zabaw", sensor: "0.1.4", sensor1: "0.1.104", type: ActionMultiSensorType.Buttons }
+                ], 180),
                 new OvercurrentPreviewDevice("Bezpieczniki", [
                     { code: "PP", title: "Przeciwprzepięciówka", sensor: "10.30.0" },
                     { code: "R1", title: "Trzyfazowe", sensor: "10.30.1" },
